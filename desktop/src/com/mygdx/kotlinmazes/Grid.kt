@@ -2,8 +2,8 @@ package com.mygdx.kotlinmazes
 
 import kotlin.random.Random
 
-class Grid(val rows: Int, val columns: Int) {
-    private val grid: Array<Array<Cell>> = Array(rows) { row -> Array(columns) { column -> Cell(row, column) } }
+class Grid(val height: Int, val width: Int) {
+    private val grid: Array<Array<Cell>> = Array(height) { row -> Array(width) { column -> Cell(row, column) } }
 
     init {
         for (row in grid) {
@@ -29,6 +29,8 @@ class Grid(val rows: Int, val columns: Int) {
     }
 
     fun randomCell(): Cell {
-        return get(Random.nextInt(rows), Random.nextInt(columns))!!
+        return grid.random().random()
     }
+
+    val rows get() = grid
 }

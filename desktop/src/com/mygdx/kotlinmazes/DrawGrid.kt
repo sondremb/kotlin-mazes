@@ -10,8 +10,8 @@ import com.mygdx.kotlinmazes.math.vec2Int
 class DrawGrid(val grid: Grid) : Scene() {
 
     override fun init() {
-        viewport = FitViewport(grid.columns.toFloat(), grid.rows.toFloat(), camera)
-        shape.projectionMatrix.setToOrtho2D(0f, 0f, grid.columns.toFloat(), grid.rows.toFloat())
+        viewport = FitViewport(grid.width.toFloat(), grid.height.toFloat(), camera)
+        shape.projectionMatrix.setToOrtho2D(0f, 0f, grid.width.toFloat(), grid.height.toFloat())
     }
 
     override fun render() {
