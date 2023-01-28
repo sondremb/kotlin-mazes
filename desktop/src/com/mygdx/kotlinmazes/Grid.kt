@@ -11,9 +11,9 @@ class Grid(val rows: Int, val columns: Int) {
                 val r = cell.row
                 val c = cell.column
 
-                cell.north = get(r - 1, c)
+                cell.north = get(r + 1, c)
                 cell.east = get(r, c + 1)
-                cell.south = get(r + 1, c)
+                cell.south = get(r - 1, c)
                 cell.west = get(r, c - 1)
             }
         }

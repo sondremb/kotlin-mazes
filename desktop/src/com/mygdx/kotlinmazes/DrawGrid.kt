@@ -22,13 +22,13 @@ class DrawGrid(val grid: Grid) : Scene() {
             val r = cell.row
             val c = cell.column
             if (!cell.isLinked(cell.north)) {
-                shape.line(vec2Int(c, r), vec2Int(c + 1, r))
+                shape.line(vec2Int(c, r + 1), vec2Int(c + 1, r + 1))
             }
             if (!cell.isLinked(cell.east)) {
                 shape.line(vec2Int(c + 1, r), vec2Int(c + 1, r + 1))
             }
             if (!cell.isLinked(cell.south)) {
-                shape.line(vec2Int(c, r + 1), vec2Int(c + 1, r + 1))
+                shape.line(vec2Int(c, r), vec2Int(c + 1, r))
             }
             if (!cell.isLinked(cell.west)) {
                 shape.line(vec2Int(c, r), vec2Int(c, r + 1))
