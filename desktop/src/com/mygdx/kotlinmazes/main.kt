@@ -8,11 +8,6 @@ fun main(arg: Array<String>) {
     val config = Lwjgl3ApplicationConfiguration()
     config.setForegroundFPS(60)
     config.setTitle("Kotlin Mazes")
-    val grid = Grid(10, 10)
-    val topLeft = grid.get(9, 0)!!
-    topLeft.link(topLeft.north!!)
-    topLeft.link(topLeft.east!!)
-    val bottomRight = grid.get(0, 9)!!
-    bottomRight.link(bottomRight.west!!)
+    val grid = Grid(10, 10).also { binaryTree(it) }
     Lwjgl3Application(DrawGrid(grid), config)
 }
