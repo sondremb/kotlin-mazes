@@ -8,5 +8,11 @@ fun main(arg: Array<String>) {
     val config = Lwjgl3ApplicationConfiguration()
     config.setForegroundFPS(60)
     config.setTitle("Kotlin Mazes")
-    Lwjgl3Application(MyGdxGame(), config)
+    val grid = Grid(10, 10)
+    val topLeft = grid.get(9, 0)!!
+    topLeft.link(topLeft.north!!)
+    topLeft.link(topLeft.east!!)
+    val bottomRight = grid.get(0, 9)!!
+    bottomRight.link(bottomRight.west!!)
+    Lwjgl3Application(DrawGrid(grid), config)
 }
