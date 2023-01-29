@@ -1,7 +1,7 @@
 package com.mygdx.kotlinmazes
 
 class Cell(val row: Int, val column: Int) {
-    private val links = mutableSetOf<Cell>()
+    val links = mutableSetOf<Cell>()
     var north: Cell? = null
     var east: Cell? = null
     var south: Cell? = null

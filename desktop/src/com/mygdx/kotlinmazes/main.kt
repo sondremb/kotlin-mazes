@@ -8,6 +8,7 @@ fun main(arg: Array<String>) {
     val config = Lwjgl3ApplicationConfiguration()
     config.setForegroundFPS(60)
     config.setTitle("Kotlin Mazes")
-    val grid = Grid(20, 20).also { sideWinder(it) }
-    Lwjgl3Application(DrawGrid(grid), config)
+    val grid = Grid(50, 80).also { sideWinder(it) }
+    val dists = Distance(grid, grid.get(0, 0)!!)
+    Lwjgl3Application(DrawGrid(grid, dists), config)
 }

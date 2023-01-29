@@ -1,7 +1,5 @@
 package com.mygdx.kotlinmazes
 
-import kotlin.random.Random
-
 class Grid(val height: Int, val width: Int) {
     private val grid: Array<Array<Cell>> = Array(height) { row -> Array(width) { column -> Cell(row, column) } }
 
