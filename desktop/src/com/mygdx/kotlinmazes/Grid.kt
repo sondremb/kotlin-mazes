@@ -31,4 +31,5 @@ class Grid(val height: Int, val width: Int) {
     }
 
     val rows get() = grid
+    val size get() = height * width
 }

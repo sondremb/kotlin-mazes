@@ -1,6 +1,6 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.generation
 
-import kotlin.random.Random
+import com.mygdx.kotlinmazes.Grid
 
 fun binaryTree(grid: Grid) {
     grid.cells.forEach {

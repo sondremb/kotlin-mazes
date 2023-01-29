@@ -1,5 +1,7 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.generation
 
+import com.mygdx.kotlinmazes.Cell
+import com.mygdx.kotlinmazes.Grid
 import kotlin.random.Random
 
 fun sideWinder(grid: Grid) {
