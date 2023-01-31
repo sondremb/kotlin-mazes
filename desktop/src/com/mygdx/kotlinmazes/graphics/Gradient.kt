@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.graphics
 
 import com.badlogic.gdx.graphics.Color
 import com.mygdx.kotlinmazes.math.lerp
