@@ -18,14 +18,6 @@ fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, deg
     var cy = radius * MathUtils.sin(start * MathUtils.degreesToRadians)
 
     if (currentType == ShapeRenderer.ShapeType.Line) {
-        // TODO finn ut hva denne gjør
-        // check(ShapeRenderer.ShapeType.Line, ShapeRenderer.ShapeType.Filled, segments * 2 + 2)
-        // TODO
-        // renderer.color(colorBits)
-        // renderer.vertex(x, y, 0f)
-        // TODO tror denne er redundant
-        // renderer.color(colorBits)
-        // renderer.vertex(x + cx, y + cy, 0f)
         for (i in 0 until segments) {
             renderer.color(colorBits)
             renderer.vertex(x + cx, y + cy, 0f)
@@ -38,12 +30,7 @@ fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, deg
         renderer.color(colorBits)
         renderer.vertex(x + cx, y + cy, 0f)
     } else {
-        // TODO denne også
-        // check(ShapeType.Line, ShapeType.Filled, segments * 3 + 3)
         for (i in 0 until segments) {
-            // TODO
-            // renderer.color(colorBits)
-            // renderer.vertex(x, y, 0f)
             renderer.color(colorBits)
             renderer.vertex(x + cx, y + cy, 0f)
             val temp = cx
@@ -57,10 +44,4 @@ fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, deg
         renderer.color(colorBits)
         renderer.vertex(x + cx, y + cy, 0f)
     }
-
-    // TODO
-    // cx = 0f
-    // cy = 0f
-    // renderer.color(colorBits)
-    // renderer.vertex(x + cx, y + cy, 0f)
 }

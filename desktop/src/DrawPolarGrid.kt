@@ -26,17 +26,6 @@ fun main(arg: Array<String>) {
 }
 
 class DrawPolarGrid(private val grid: PolarGrid) : Scene() {
-
-    // farger basert på colormapet "plasma" fra matplotlib
-    // hex-koder hentet fra https://waldyrious.net/viridis-palette-generator/
-    private var gradient: Gradient = Gradient(
-            Color.valueOf("#f0f921"),
-            Color.valueOf("#f89540"),
-            Color.valueOf("#cc4778"),
-            Color.valueOf("#7e03a8"),
-            Color.valueOf("#0d0887")
-    )
-
     override fun init() {
         viewport = FitViewport(1f, 1f, camera)
         shape.projectionMatrix.setToOrtho2D(0f, 0f, 1f, 1f)
