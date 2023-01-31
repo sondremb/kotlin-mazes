@@ -1,7 +1,7 @@
 package com.mygdx.kotlinmazes.generation
 
-import com.mygdx.kotlinmazes.SquareCell
-import com.mygdx.kotlinmazes.SquareGrid
+import com.mygdx.kotlinmazes.grids.square.SquareCell
+import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import kotlin.random.Random
 
 fun sideWinder(grid: SquareGrid) {

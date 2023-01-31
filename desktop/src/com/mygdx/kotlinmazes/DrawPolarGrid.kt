@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.mygdx.kotlinmazes.generation.aldousBroder
+import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.math.toDegrees
 import ktx.math.plus
 import ktx.math.times

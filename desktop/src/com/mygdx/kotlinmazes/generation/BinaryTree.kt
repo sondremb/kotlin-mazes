@@ -1,6 +1,6 @@
 package com.mygdx.kotlinmazes.generation
 
-import com.mygdx.kotlinmazes.SquareGrid
+import com.mygdx.kotlinmazes.grids.square.SquareGrid
 
 fun binaryTree(grid: SquareGrid) {
     grid.cells.forEach {

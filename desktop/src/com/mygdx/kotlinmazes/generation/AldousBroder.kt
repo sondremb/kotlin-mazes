@@ -1,6 +1,6 @@
 package com.mygdx.kotlinmazes.generation
 
-import com.mygdx.kotlinmazes.Grid
+import com.mygdx.kotlinmazes.grids.Grid
 
 fun aldousBroder(grid: Grid) {
     var cell = grid.randomCell()

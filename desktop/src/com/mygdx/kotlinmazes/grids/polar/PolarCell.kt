@@ -1,4 +1,6 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.grids.polar
+
+import com.mygdx.kotlinmazes.grids.Cell
 
 class PolarCell(val row: Int, val column: Int) : Cell() {
     var cw: PolarCell? = null

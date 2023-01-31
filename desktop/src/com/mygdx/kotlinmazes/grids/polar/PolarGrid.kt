@@ -1,5 +1,6 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.grids.polar
 
+import com.mygdx.kotlinmazes.grids.Grid
 import kotlin.math.PI
 import kotlin.math.roundToInt
 

@@ -1,5 +1,6 @@
 package com.mygdx.kotlinmazes
 
+import com.mygdx.kotlinmazes.grids.Cell
 import kotlin.math.max
 
 class Distance(start: Cell) {

@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.grids
 
 abstract class Grid {
     abstract fun randomCell(): Cell
