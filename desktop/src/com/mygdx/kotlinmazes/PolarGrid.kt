@@ -1,10 +1,9 @@
 package com.mygdx.kotlinmazes
 
 import kotlin.math.PI
-import kotlin.math.round
 import kotlin.math.roundToInt
 
-class PolarGrid(val rows: Int) {
+class PolarGrid(val rows: Int) : Grid() {
     private val grid: MutableList<MutableList<PolarCell>> = MutableList(rows) { mutableListOf() }
 
     init {
@@ -36,7 +35,7 @@ class PolarGrid(val rows: Int) {
         }
     }
 
-    fun randomCell(): PolarCell {
+    override fun randomCell(): PolarCell {
         // gjør ikke grid.random().random(), fordi det hadde ikke blitt uniform fordeling:
         // alle radene er like sannsynlig å bli valgt, men de innerste radene har mange færre elementer,
         // så indre celler hadde hatt mye større sannsynlighet for å bli valgt
@@ -54,5 +53,5 @@ class PolarGrid(val rows: Int) {
         return cellRow.getOrNull(column.mod(cellRow.size))
     }
 
-    val size: Int get() = grid.sumOf { it.size }
+    override val size: Int get() = grid.sumOf { it.size }
 }

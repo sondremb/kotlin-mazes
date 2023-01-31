@@ -8,7 +8,7 @@ import com.mygdx.kotlinmazes.math.norm
 import com.mygdx.kotlinmazes.math.vec2Int
 
 
-class DrawGrid(private val grid: Grid, private val distance: Distance) : Scene() {
+class DrawSquareGrid(private val grid: SquareGrid, private val distance: Distance) : Scene() {
 
     // farger basert på colormapet "plasma" fra matplotlib
     // hex-koder hentet fra https://waldyrious.net/viridis-palette-generator/

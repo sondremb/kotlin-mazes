@@ -1,9 +1,8 @@
 package com.mygdx.kotlinmazes.generation
 
 import com.mygdx.kotlinmazes.Grid
-import com.mygdx.kotlinmazes.PolarGrid
 
-fun aldousBroder(grid: PolarGrid) {
+fun aldousBroder(grid: Grid) {
     var cell = grid.randomCell()
     var remaining = grid.size - 1
 

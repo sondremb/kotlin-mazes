@@ -2,8 +2,8 @@ package com.mygdx.kotlinmazes
 
 import kotlin.math.max
 
-class Distance(grid: Grid, start: Cell) {
-    private val dists = Array(grid.height) { IntArray(grid.width) { -1 } }
+class Distance(start: Cell) {
+    private val dists = HashMap<Cell, Int>()
     var max = -1
 
     init {
@@ -26,10 +26,10 @@ class Distance(grid: Grid, start: Cell) {
     }
 
     operator fun get(cell: Cell): Int {
-        return dists[cell.row][cell.column]
+        return dists[cell] ?: -1
     }
 
     operator fun set(cell: Cell, distance: Int) {
-        dists[cell.row][cell.column] = distance
+        dists[cell] = distance
     }
 }
