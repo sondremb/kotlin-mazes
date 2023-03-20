@@ -1,12 +1,12 @@
 package com.mygdx.kotlinmazes
 
-import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.Viewport
+import ktx.app.KtxApplicationAdapter
 
 
-abstract class Scene : ApplicationAdapter() {
+abstract class Scene : KtxApplicationAdapter {
     lateinit var shape: ShapeRenderer
     lateinit var viewport: Viewport
     val camera = OrthographicCamera()
