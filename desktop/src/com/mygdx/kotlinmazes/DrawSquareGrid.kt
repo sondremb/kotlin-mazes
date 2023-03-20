@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.mygdx.kotlinmazes.graphics.Gradient
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.math.norm
 import com.mygdx.kotlinmazes.math.vec2Int
 import ktx.graphics.use
 
@@ -15,13 +14,14 @@ class DrawSquareGrid(private val grid: SquareGrid, private val distance: Distanc
 
     // farger basert på colormapet "plasma" fra matplotlib
     // hex-koder hentet fra https://waldyrious.net/viridis-palette-generator/
-    private var gradient: Gradient = Gradient(
+    private var gradient = Gradient(
         Color.valueOf("#f0f921"),
         Color.valueOf("#f89540"),
         Color.valueOf("#cc4778"),
         Color.valueOf("#7e03a8"),
         Color.valueOf("#0d0887")
-    )
+    ).sampler(0f, distance.max.toFloat())
+
 
     override fun init() {
         viewport = FitViewport(grid.width.toFloat(), grid.height.toFloat(), camera)
@@ -35,7 +35,7 @@ class DrawSquareGrid(private val grid: SquareGrid, private val distance: Distanc
                 val r = cell.row
                 val c = cell.column
 
-                it.color = gradient.sample(norm(0f, distance.max.toFloat(), distance[cell].toFloat()))
+                it.color = gradient.sample(distance[cell].toFloat())
                 it.rect(c.toFloat(), r.toFloat(), 1f, 1f)
             }
         }

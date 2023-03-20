@@ -27,6 +27,16 @@ class Gradient(stops: List<GradientStop>) {
         val relativeValue = norm(start.value, end.value, value)
         return lerp(start.color, end.color, relativeValue)
     }
+
+    fun sampler(min: Float, max: Float): GradientSampler {
+        return GradientSampler(this, min, max)
+    }
+}
+
+class GradientSampler(private val gradient: Gradient, private val min: Float, private val max: Float) {
+    fun sample(value: Float): Color {
+        return gradient.sample(norm(min, max, value))
+    }
 }
 
 data class GradientStop(val color: Color, val value: Float) {
@@ -37,7 +47,5 @@ data class GradientStop(val color: Color, val value: Float) {
 
 
 fun validateValue(value: Float) {
-    if (value < 0f || value > 1f) {
-        throw IllegalArgumentException("Value must be between 0 and 1, was $value")
-    }
+    require(value in 0f..1f) { "Value must be between 0 and 1, was $value" }
 }
