@@ -8,6 +8,9 @@ fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, deg
     strokeArc(x, y, radius, start, degrees, max(1, (6.0 * Math.cbrt(radius.toDouble()) * (degrees / 360.0)).toInt()))
 }
 
+// a version of ShapeRenderer.strokeArc that does not draw lines from the center of the arc to the start and end points
+// adapted from original code at:
+// https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/glutils/ShapeRenderer.java#L836
 fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, degrees: Float, segments: Int) {
     require(segments > 0) { "segments must be > 0." }
     val colorBits = color.toFloatBits()
