@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes.graphics
+package com.mygdx.kotlinmazes.utils.graphics
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils

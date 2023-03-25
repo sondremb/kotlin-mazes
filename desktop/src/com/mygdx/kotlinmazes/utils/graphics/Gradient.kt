@@ -1,9 +1,8 @@
-package com.mygdx.kotlinmazes.graphics
+package com.mygdx.kotlinmazes.utils.graphics
 
 import com.badlogic.gdx.graphics.Color
-import com.mygdx.kotlinmazes.math.lerp
-import com.mygdx.kotlinmazes.math.norm
-import java.lang.IllegalArgumentException
+import com.mygdx.kotlinmazes.utils.math.lerp
+import com.mygdx.kotlinmazes.utils.math.norm
 
 class Gradient(stops: List<GradientStop>) {
     private lateinit var _stops: List<GradientStop>

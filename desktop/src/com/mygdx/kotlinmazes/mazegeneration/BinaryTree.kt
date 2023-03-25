@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes.generation
+package com.mygdx.kotlinmazes.mazegeneration
 
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 

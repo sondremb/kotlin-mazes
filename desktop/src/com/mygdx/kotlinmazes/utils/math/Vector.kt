@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes.math
+package com.mygdx.kotlinmazes.utils.math
 
 import com.badlogic.gdx.math.Vector2
 

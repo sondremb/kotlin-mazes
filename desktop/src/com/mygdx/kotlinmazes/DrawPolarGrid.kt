@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.FitViewport
-import com.mygdx.kotlinmazes.generation.aldousBroder
-import com.mygdx.kotlinmazes.graphics.strokeArc
+import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.utils.graphics.strokeArc
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
-import com.mygdx.kotlinmazes.math.toDegrees
+import com.mygdx.kotlinmazes.utils.math.toDegrees
 import ktx.math.plus
 import ktx.math.times
 import ktx.math.vec2
@@ -48,7 +48,14 @@ class DrawPolarGrid(private val grid: PolarGrid) : Scene() {
             shape.color = Color.BLACK
             if (!cell.isLinked(cell.inwards)) {
                 shape.begin(ShapeRenderer.ShapeType.Line)
-                shape.strokeArc(0.5f, 0.5f, radius = innerRadius, start = toDegrees(thetaCcw).toFloat(), degrees = toDegrees(theta).toFloat(), 10)
+                shape.strokeArc(
+                    0.5f,
+                    0.5f,
+                    radius = innerRadius,
+                    start = toDegrees(thetaCcw).toFloat(),
+                    degrees = toDegrees(theta).toFloat(),
+                    10
+                )
                 shape.end()
             }
             if (!cell.isLinked(cell.cw)) {
