@@ -1,11 +1,13 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.scenes
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
+import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.Scene
+import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
 import com.mygdx.kotlinmazes.utils.graphics.strokeArc
-import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.utils.math.toDegrees
 import ktx.graphics.use
 import ktx.math.plus
@@ -17,7 +19,7 @@ import kotlin.math.sin
 
 fun main() {
     val grid = PolarGrid(20).also { aldousBroder(it) }
-    run(DrawPolarGrid(grid))
+    com.mygdx.kotlinmazes.run(DrawPolarGrid(grid))
 }
 
 class DrawPolarGrid(private val grid: PolarGrid) : Scene() {
