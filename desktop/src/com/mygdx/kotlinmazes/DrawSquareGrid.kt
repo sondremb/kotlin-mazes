@@ -8,6 +8,9 @@ import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.utils.math.vec2Int
 import ktx.graphics.use
+import ktx.math.times
+import ktx.math.vec2
+import kotlin.math.min
 
 
 class DrawSquareGrid(private val grid: SquareGrid, private val distance: Distance) : Scene() {
@@ -23,36 +26,35 @@ class DrawSquareGrid(private val grid: SquareGrid, private val distance: Distanc
     ).sampler(0f, distance.max.toFloat())
 
 
-    override fun init() {
-        viewport = FitViewport(grid.width.toFloat(), grid.height.toFloat(), camera)
-        shape.projectionMatrix.setToOrtho2D(0f, 0f, grid.width.toFloat(), grid.height.toFloat())
-    }
+    override fun draw() {
+        val width = EngineConfig.VIEWPORT_WIDTH / grid.width
+        val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
+        val size = min(width, height)
 
-    override fun render() {
         ScreenUtils.clear(1f, 1f, 1f, 1f)
-        shape.use(ShapeRenderer.ShapeType.Filled) {
+        shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
             for (cell in grid.cells) {
                 val r = cell.row
                 val c = cell.column
 
                 it.color = gradient.sample(distance[cell].toFloat())
-                it.rect(c.toFloat(), r.toFloat(), 1f, 1f)
+                it.rect(c * size, r * size, size, size)
             }
         }
 
-        shape.use(ShapeRenderer.ShapeType.Line) {
+        shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
             it.color = Color.BLACK
-            it.line(vec2Int(0, 0), vec2Int(0, grid.height))
-            it.line(vec2Int(0, 0), vec2Int(grid.width, 0))
+            it.line(vec2(0f, 0f), vec2(0f, grid.height * size))
+            it.line(vec2(0f, 0f), vec2(grid.width * size, 0f))
 
             for (cell in grid.cells) {
                 val r = cell.row
                 val c = cell.column
                 if (!cell.isLinked(cell.north)) {
-                    it.line(vec2Int(c, r + 1), vec2Int(c + 1, r + 1))
+                    it.line(vec2Int(c, r + 1) * size, vec2Int(c + 1, r + 1) * size)
                 }
                 if (!cell.isLinked(cell.east)) {
-                    it.line(vec2Int(c + 1, r), vec2Int(c + 1, r + 1))
+                    it.line(vec2Int(c + 1, r) * size, vec2Int(c + 1, r + 1) * size)
                 }
             }
         }
