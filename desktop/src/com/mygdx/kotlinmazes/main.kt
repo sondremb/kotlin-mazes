@@ -2,8 +2,8 @@ package com.mygdx.kotlinmazes
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
+import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
 import com.mygdx.kotlinmazes.scenes.SquareGridDistance
 import ktx.math.vec2
 
@@ -18,10 +18,10 @@ object EngineConfig {
 fun main(arg: Array<String>) {
     val grid = SquareGrid(50, 80).also { aldousBroder(it) }
     val dists = Distance(grid.get(grid.height / 2, grid.width / 2)!!)
-    run(SquareGridDistance(grid, dists))
+    playScene(SquareGridDistance(grid, dists))
 }
 
-fun run(scene: Scene) {
+fun playScene(scene: Scene) {
     val config = Lwjgl3ApplicationConfiguration()
     config.setForegroundFPS(60)
     config.setTitle("Kotlin Mazes")

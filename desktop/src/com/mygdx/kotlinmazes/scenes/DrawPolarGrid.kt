@@ -7,6 +7,7 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.Scene
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.strokeArc
 import com.mygdx.kotlinmazes.utils.math.toDegrees
 import ktx.graphics.use
@@ -19,7 +20,7 @@ import kotlin.math.sin
 
 fun main() {
     val grid = PolarGrid(20).also { aldousBroder(it) }
-    com.mygdx.kotlinmazes.run(DrawPolarGrid(grid))
+    playScene(DrawPolarGrid(grid))
 }
 
 class DrawPolarGrid(private val grid: PolarGrid) : Scene() {

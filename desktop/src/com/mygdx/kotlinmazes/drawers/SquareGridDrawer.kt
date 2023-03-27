@@ -2,8 +2,10 @@ package com.mygdx.kotlinmazes.drawers
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Vector2
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.utils.math.vec2
+import ktx.graphics.rect
 import ktx.graphics.use
 import ktx.math.times
 
@@ -15,7 +17,7 @@ class SquareGridDrawer(private val shapeRenderer: ShapeRenderer, private val sid
 
     fun fill(cell: SquareCell) {
         shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
-            shapeRenderer.rect(bottomLeft(cell).x, bottomLeft(cell).y, sideLength, sideLength)
+            shapeRenderer.rect(bottomLeft(cell), sideLength, sideLength)
         }
     }
 
@@ -39,5 +41,9 @@ class SquareGridDrawer(private val shapeRenderer: ShapeRenderer, private val sid
                 shapeRenderer.line(bottomLeft(cell), topLeft(cell))
             }
         }
+    }
+
+    fun gridCoordsFromScreenCoords(screenCoords: Vector2): Pair<Int, Int> {
+        return Pair((screenCoords.x / sideLength).toInt(), (screenCoords.y / sideLength).toInt())
     }
 }
