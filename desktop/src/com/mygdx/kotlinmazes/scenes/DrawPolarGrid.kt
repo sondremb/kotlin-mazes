@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.EngineConfig
-import com.mygdx.kotlinmazes.Scene
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
 import com.mygdx.kotlinmazes.playScene
@@ -32,7 +31,7 @@ class DrawPolarGrid(private val grid: PolarGrid) : Scene() {
     override fun draw() {
         ScreenUtils.clear(1f, 1f, 1f, 1f)
         shapeRenderer.color = Color.BLACK
-        for (cell in grid.cells) {
+        for (cell in grid.cells()) {
             val r = cell.row
             val c = cell.column
             if (r == 0) {

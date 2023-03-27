@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
 import com.mygdx.kotlinmazes.EngineConfig
-import com.mygdx.kotlinmazes.Scene
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
@@ -22,10 +21,9 @@ fun main() {
 
 class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
 
-    private val sideLength: Float
     private var distance: Distance? = null
     private var hoveredCell: SquareCell? = null
-    private val drawer: SquareGridDrawer
+    private lateinit var drawer: SquareGridDrawer
     private val gradient = Gradient(
         Color.valueOf("#f0f921"),
         Color.valueOf("#f89540"),
@@ -34,17 +32,17 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
         Color.valueOf("#0d0887")
     )
 
-    init {
+    override fun init() {
         val width = EngineConfig.VIEWPORT_WIDTH / grid.width
         val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
-        sideLength = min(width, height)
+        val sideLength = min(width, height)
         drawer = SquareGridDrawer(shapeRenderer, sideLength)
     }
 
     override fun update() {
         val cursorPos = cursorPosition()
         val (c, r) = drawer.gridCoordsFromScreenCoords(cursorPos)
-        hoveredCell = grid.get(r.toInt(), c.toInt())
+        hoveredCell = grid.get(r, c)
 
         if (hoveredCell != null && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             distance = Distance(hoveredCell!!)
@@ -52,11 +50,10 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
     }
 
     override fun draw() {
-
         ScreenUtils.clear(1f, 1f, 1f, 1f)
         if (distance != null) {
             val gradientSampler = gradient.sampler(0f, distance!!.max.toFloat())
-            grid.cells.forEach {
+            grid.cells().forEach {
                 var color = gradientSampler.sample(distance!![it].toFloat())
                 if (it.row == hoveredCell?.row && it.column == hoveredCell?.column) {
                     // lighten color if hovered
@@ -68,7 +65,7 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
             drawer.fill(hoveredCell!!, Color.CORAL)
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells.forEach(drawer::drawEdges)
+        grid.cells().forEach(drawer::drawEdges)
     }
 }
 

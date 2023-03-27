@@ -20,7 +20,7 @@ class PolarGrid(val rows: Int) : Grid() {
             grid[row] = MutableList(cells) { col -> PolarCell(row, col) }
         }
 
-        cells.forEach { cell ->
+        cells().forEach { cell ->
             val row = cell.row
             val column = cell.column
             if (row > 0) {
@@ -40,10 +40,10 @@ class PolarGrid(val rows: Int) : Grid() {
         // gjør ikke grid.random().random(), fordi det hadde ikke blitt uniform fordeling:
         // alle radene er like sannsynlig å bli valgt, men de innerste radene har mange færre elementer,
         // så indre celler hadde hatt mye større sannsynlighet for å bli valgt
-        return cells.random()
+        return cells().random()
     }
 
-    val cells: List<PolarCell> get() = grid.flatten()
+    override fun cells() = grid.flatten()
 
     operator fun get(row: Int): List<PolarCell> {
         return grid[row]

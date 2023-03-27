@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
 import com.mygdx.kotlinmazes.EngineConfig
-import com.mygdx.kotlinmazes.Scene
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
@@ -30,9 +29,9 @@ class SquareGridDistance(private val grid: SquareGrid, private val distance: Dis
         Color.valueOf("#0d0887")
     ).sampler(0f, distance.max.toFloat())
 
-    private val drawer: SquareGridDrawer;
+    private lateinit var drawer: SquareGridDrawer;
 
-    init {
+    override fun init() {
         val width = EngineConfig.VIEWPORT_WIDTH / grid.width
         val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
         val sideLength = min(width, height)
@@ -41,10 +40,10 @@ class SquareGridDistance(private val grid: SquareGrid, private val distance: Dis
 
     override fun draw() {
         ScreenUtils.clear(1f, 1f, 1f, 1f)
-        grid.cells.forEach {
+        grid.cells().forEach {
             drawer.fill(it, gradient.sample(distance[it].toFloat()))
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells.forEach(drawer::drawEdges)
+        grid.cells().forEach(drawer::drawEdges)
     }
 }

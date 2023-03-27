@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.scenes
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Camera
@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
+import com.mygdx.kotlinmazes.EngineConfig
 import ktx.app.KtxApplicationAdapter
 import ktx.graphics.use
 import ktx.math.vec2
@@ -27,7 +28,10 @@ abstract class Scene : KtxApplicationAdapter {
         shapeRenderer = ShapeRenderer().also {
             it.projectionMatrix.setToOrtho2D(0f, 0f, EngineConfig.VIEWPORT_WIDTH, EngineConfig.VIEWPORT_HEIGHT)
         }
+        init()
     }
+
+    open fun init() {}
 
     final override fun render() {
         super.render()

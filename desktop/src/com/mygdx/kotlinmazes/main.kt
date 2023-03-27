@@ -4,6 +4,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.scenes.Scene
 import com.mygdx.kotlinmazes.scenes.SquareGridDistance
 import ktx.math.vec2
 

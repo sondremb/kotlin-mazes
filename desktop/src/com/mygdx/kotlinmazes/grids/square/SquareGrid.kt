@@ -19,10 +19,7 @@ class SquareGrid(val height: Int, val width: Int) : Grid() {
         }
     }
 
-    val cells: List<SquareCell>
-        get() {
-            return grid.flatten()
-        }
+    override fun cells() = grid.flatten()
 
     fun get(row: Int, column: Int): SquareCell? {
         return grid.getOrNull(row)?.getOrNull(column)

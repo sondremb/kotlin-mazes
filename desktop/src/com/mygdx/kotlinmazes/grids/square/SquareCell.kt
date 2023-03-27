@@ -15,4 +15,10 @@ class SquareCell(val row: Int, val column: Int) : Cell() {
     override fun toString(): String {
         return "Cell($row, $column)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is SquareCell) return false
+        return row == other.row && column == other.column
+    }
 }
