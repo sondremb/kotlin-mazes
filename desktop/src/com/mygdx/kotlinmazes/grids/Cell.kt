@@ -17,6 +17,8 @@ abstract class Cell {
         }
     }
 
+    fun resetLinks() = links.clear()
+
     fun isLinked(other: Cell?): Boolean {
         return links.contains(other)
     }

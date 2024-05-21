@@ -2,7 +2,7 @@ package com.mygdx.kotlinmazes.grids.square
 
 import com.mygdx.kotlinmazes.grids.Grid
 
-class SquareGrid(val height: Int, val width: Int) : Grid() {
+open class SquareGrid(val height: Int, val width: Int) : Grid() {
     val grid: Array<Array<SquareCell>> = Array(height) { row -> Array(width) { column -> SquareCell(row, column) } }
 
     init {

@@ -6,13 +6,13 @@ import com.mygdx.kotlinmazes.Distance
 import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.mazegeneration.huntAndKill
 import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 
 fun main() {
-    val grid = SquareGrid(50, 80).also { aldousBroder(it) }
+    val grid = SquareGrid(50, 80).also { huntAndKill(it) }
     val dists = Distance(grid.get(grid.height / 2, grid.width / 2)!!)
     playScene(SquareGridDistance(grid, dists))
 }

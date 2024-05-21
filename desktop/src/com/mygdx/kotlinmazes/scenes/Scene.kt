@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.playScene
 import ktx.app.KtxApplicationAdapter
 import ktx.graphics.use
 import ktx.math.vec2
