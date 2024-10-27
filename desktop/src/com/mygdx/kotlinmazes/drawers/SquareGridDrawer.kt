@@ -43,6 +43,22 @@ class SquareGridDrawer(private val shapeRenderer: ShapeRenderer, private val sid
         }
     }
 
+    fun drawEdges(cell: SquareCell, color: Color) {
+        shapeRenderer.color = color
+        drawEdges(cell)
+    }
+
+    fun drawAllEdges(cell: SquareCell) {
+        shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
+            shapeRenderer.rect(bottomLeft(cell), sideLength, sideLength)
+        }
+    }
+
+    fun drawAllEdges(cell: SquareCell, color: Color) {
+        shapeRenderer.color = color
+        drawAllEdges(cell)
+    }
+
     fun gridCoordsFromScreenCoords(screenCoords: Vector2): Pair<Int, Int> {
         return Pair((screenCoords.x / sideLength).toInt(), (screenCoords.y / sideLength).toInt())
     }

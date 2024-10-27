@@ -15,7 +15,7 @@ import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 
 fun main() {
-    val grid = MaskedSquareGrid(50, 80)
+    val grid = MaskedSquareGrid(108, 192)
     playScene(MaskedSquareGridScene(grid))
 }
 
@@ -34,30 +34,50 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
     private var prevHoveredCell: SquareCell? = null
     private var isLeftHeld = false
     private var isRightHeld = false
+    private var isForwardHeld = false
+    private var isBackHeld = false
+    private var isSpaceHeld = false
+    private var range = 2
+    private var currentDistance = 0
 
     override fun init() {
         val width = EngineConfig.VIEWPORT_WIDTH / grid.width
         val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
         val sideLength = min(width, height)
         drawer = SquareGridDrawer(shapeRenderer, sideLength)
-        grid.allCells().forEach(grid::mask)
+        //grid.allCells().forEach(grid::mask)
     }
 
-    private fun handleLeftClick(cell: SquareCell) {
-        if (grid.isMasked(cell)) {
-            grid.unmask(cell)
-        } else {
-            grid.mask(cell)
-        }
+    private fun setMask(cell: SquareCell, masked: Boolean) {
+        if (masked) grid.mask(cell) else grid.unmask(cell)
         distanceSource = null
         distance = null
+        currentDistance = 0
     }
 
-    private fun handleRightClick(cell: SquareCell) {
+    private fun handleSomething(cell: SquareCell) {
         distanceSource = cell
         grid.resetLinks()
         aldousBroder(grid)
         distance = Distance(cell)
+    }
+
+    private fun getCellNeighborhood(cell: SquareCell): List<SquareCell> {
+        val neighbors = mutableListOf<SquareCell>()
+        val rangeSquared = range * range
+        for (r in -range..range) {
+            val rSquare = r * r
+            for (c in -range..range) {
+                if (rSquare + c * c > rangeSquared) {
+                    continue
+                }
+                val neighbor = grid.get(cell.row + r, cell.column + c)
+                if (neighbor != null) {
+                    neighbors.add(neighbor)
+                }
+            }
+        }
+        return neighbors
     }
 
 
@@ -76,45 +96,69 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
             return
         }
 
+        var neighborhood = getCellNeighborhood(hoveredCell)
         if (!isLeftHeld && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             isLeftHeld = true
-            handleLeftClick(hoveredCell)
+            neighborhood.forEach { setMask(it, false) }
         }
-        if (!isRightHeld && Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && !grid.isMasked(
+        if (!isRightHeld && Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+            isRightHeld = true
+            neighborhood.forEach { setMask(it, true) }
+        }
+
+        if (!isForwardHeld && Gdx.input.isButtonPressed(Input.Buttons.FORWARD)) {
+            isForwardHeld = true
+            range++
+        }
+        isForwardHeld = Gdx.input.isButtonPressed(Input.Buttons.FORWARD)
+
+        if (!isBackHeld && Gdx.input.isButtonPressed(Input.Buttons.BACK)) {
+            isBackHeld = true
+            range = maxOf(0, range - 1)
+        }
+        isBackHeld = Gdx.input.isButtonPressed(Input.Buttons.BACK)
+
+        if (!isSpaceHeld && Gdx.input.isKeyPressed(Input.Keys.SPACE) && !grid.isMasked(
                 hoveredCell
             )
         ) {
-            isRightHeld = true
-            handleRightClick(hoveredCell)
+            isSpaceHeld = true
+            handleSomething(hoveredCell)
         }
+        isSpaceHeld = Gdx.input.isKeyPressed(Input.Keys.SPACE)
     }
 
     override fun draw() {
-
         ScreenUtils.clear(1f, 1f, 1f, 1f)
+        var neighborHood = prevHoveredCell?.let(::getCellNeighborhood) ?: emptyList()
         if (distance == null) {
             grid.allCells().forEach {
                 if (grid.isMasked(it)) {
                     drawer.fill(it, Color.GRAY)
                 }
             }
+            neighborHood.forEach { drawer.drawAllEdges(it, Color.RED) }
             return
         }
+
         val gradientSampler = gradient.sampler(0f, distance!!.max.toFloat())
         grid.cells().forEach {
-            var color = gradientSampler.sample(distance!![it].toFloat())
+            val cellDist = distance!![it]
+            var color = if (cellDist <= currentDistance) gradientSampler.sample(cellDist.toFloat()) else Color.WHITE
             if (it.row == prevHoveredCell?.row && it.column == prevHoveredCell?.column) {
                 // lighten color if hovered
                 color = Color(color.r * 1.5f, color.g * 1.5f, color.b * 1.5f, color.a)
             }
             drawer.fill(it, color)
         }
+        currentDistance += 5
 
         if (prevHoveredCell != null) {
             drawer.fill(prevHoveredCell!!, Color.CORAL)
         }
         shapeRenderer.color = Color.BLACK
         grid.cells().forEach(drawer::drawEdges)
+        prevHoveredCell?.let { drawer.drawAllEdges(it, Color.RED) }
     }
 }
 

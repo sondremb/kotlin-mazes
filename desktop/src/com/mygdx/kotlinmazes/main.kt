@@ -26,6 +26,6 @@ fun playScene(scene: Scene) {
     val config = Lwjgl3ApplicationConfiguration()
     config.setForegroundFPS(60)
     config.setTitle("Kotlin Mazes")
-    config.setWindowedMode(EngineConfig.VIEWPORT_WIDTH.toInt(), EngineConfig.VIEWPORT_HEIGHT.toInt())
+    config.setWindowedMode(EngineConfig.VIEWPORT_WIDTH.toInt() / 2, EngineConfig.VIEWPORT_HEIGHT.toInt() / 2)
     Lwjgl3Application(scene, config)
 }
