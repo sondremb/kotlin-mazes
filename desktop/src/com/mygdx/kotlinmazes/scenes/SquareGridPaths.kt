@@ -61,7 +61,7 @@ class SquareGridPaths(private val grid: SquareGrid) : Scene() {
             drawer.fill(hoveredCell!!, Color.CORAL)
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawEdges)
+        grid.cells().forEach(drawer::drawBorders)
     }
 }
 

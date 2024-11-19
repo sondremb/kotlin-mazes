@@ -1,7 +1,9 @@
 package com.mygdx.kotlinmazes.utils.graphics
 
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
+import ktx.graphics.copy
 import kotlin.math.max
 
 fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, degrees: Float) {
@@ -47,4 +49,11 @@ fun ShapeRenderer.strokeArc(x: Float, y: Float, radius: Float, start: Float, deg
         renderer.color(colorBits)
         renderer.vertex(x + cx, y + cy, 0f)
     }
+}
+
+fun ShapeRenderer.withColor(color: Color, block: () -> Unit) {
+    val oldColor = this.color.copy()
+    this.color = color
+    block()
+    this.color = oldColor
 }

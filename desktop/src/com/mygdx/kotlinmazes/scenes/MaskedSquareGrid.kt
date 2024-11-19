@@ -137,7 +137,7 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
                     drawer.fill(it, Color.GRAY)
                 }
             }
-            neighborHood.forEach { drawer.drawAllEdges(it, Color.RED) }
+            neighborHood.forEach { drawer.drawAllBorders(it, Color.RED) }
             return
         }
 
@@ -157,8 +157,8 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
             drawer.fill(prevHoveredCell!!, Color.CORAL)
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawEdges)
-        prevHoveredCell?.let { drawer.drawAllEdges(it, Color.RED) }
+        grid.cells().forEach(drawer::drawAllBorders)
+        prevHoveredCell?.let { drawer.drawAllBorders(it, Color.RED) }
     }
 }
 

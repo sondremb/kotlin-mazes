@@ -44,6 +44,6 @@ class SquareGridDistance(private val grid: SquareGrid, private val distance: Dis
             drawer.fill(it, gradient.sample(distance[it].toFloat()))
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawEdges)
+        grid.cells().forEach(drawer::drawBorders)
     }
 }
