@@ -1,6 +1,5 @@
 package com.mygdx.kotlinmazes.drawers
 
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.mygdx.kotlinmazes.grids.hex.HexCell
@@ -12,24 +11,12 @@ import ktx.math.times
 import ktx.math.vec2
 import kotlin.math.sqrt
 
-class HexDrawer(val shaperenderer: ShapeRenderer, val sidelength: Float, val offset: Vector2) {
-    fun center(coord: HexCoords): Vector2 {
-        val (q, r) = coord
-        val x = sidelength * (sqrt(3f) * q + r * sqrt(3f) / 2f)
-        val y = sidelength * (3f / 2f * r)
-        return vec2(x, y) + offset
-    }
+class HexDrawer(shapeRenderer: ShapeRenderer, val sidelength: Float, val offset: Vector2) :
+    GridDrawer<HexCell>(shapeRenderer) {
 
-    private fun north(coord: HexCoords) = center(coord) + vec2(0f, -1f) * sidelength
-    private fun northEast(coord: HexCoords) = center(coord) + vec2(sqrt(3f) / 2f, -0.5f) * sidelength
-    private fun southEast(coord: HexCoords) = center(coord) + vec2(sqrt(3f) / 2f, 0.5f) * sidelength
-    private fun south(coord: HexCoords) = center(coord) + vec2(0f, 1f) * sidelength
-    private fun southWest(coord: HexCoords) = center(coord) + vec2(-sqrt(3f) / 2f, 0.5f) * sidelength
-    private fun northWest(coord: HexCoords) = center(coord) + vec2(-sqrt(3f) / 2f, -0.5f) * sidelength
-
-    fun fill(cell: HexCell) {
+    override fun fill(cell: HexCell) {
         val coord = cell.coords
-        shaperenderer.use(ShapeRenderer.ShapeType.Filled) {
+        shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
             it.triangle(north(coord), northEast(coord), center(coord))
             it.triangle(northEast(coord), southEast(coord), center(coord))
             it.triangle(southEast(coord), south(coord), center(coord))
@@ -39,14 +26,9 @@ class HexDrawer(val shaperenderer: ShapeRenderer, val sidelength: Float, val off
         }
     }
 
-    fun fill(cell: HexCell, color: Color) {
-        shaperenderer.color = color
-        fill(cell)
-    }
-
-    fun drawBorders(cell: HexCell) {
+    override fun drawBorders(cell: HexCell) {
         val coords = cell.coords
-        shaperenderer.use(ShapeRenderer.ShapeType.Line) {
+        shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
             if (!cell.isLinked(cell.east)) {
                 it.line(northEast(coords), southEast(coords))
             }
@@ -67,4 +49,30 @@ class HexDrawer(val shaperenderer: ShapeRenderer, val sidelength: Float, val off
             }
         }
     }
+
+    override fun drawAllBorders(cell: HexCell) {
+        val coords = cell.coords
+        shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
+            it.line(northEast(coords), southEast(coords))
+            it.line(southEast(coords), south(coords))
+            it.line(south(coords), southWest(coords))
+            it.line(southWest(coords), northWest(coords))
+            it.line(northWest(coords), north(coords))
+            it.line(north(coords), northEast(coords))
+        }
+    }
+
+    private fun center(coord: HexCoords): Vector2 {
+        val (q, r) = coord
+        val x = sidelength * (sqrt(3f) * q + r * sqrt(3f) / 2f)
+        val y = sidelength * (3f / 2f * r)
+        return vec2(x, y) + offset
+    }
+
+    private fun north(coord: HexCoords) = center(coord) + vec2(0f, -1f) * sidelength
+    private fun northEast(coord: HexCoords) = center(coord) + vec2(sqrt(3f) / 2f, -0.5f) * sidelength
+    private fun southEast(coord: HexCoords) = center(coord) + vec2(sqrt(3f) / 2f, 0.5f) * sidelength
+    private fun south(coord: HexCoords) = center(coord) + vec2(0f, 1f) * sidelength
+    private fun southWest(coord: HexCoords) = center(coord) + vec2(-sqrt(3f) / 2f, 0.5f) * sidelength
+    private fun northWest(coord: HexCoords) = center(coord) + vec2(-sqrt(3f) / 2f, -0.5f) * sidelength
 }
