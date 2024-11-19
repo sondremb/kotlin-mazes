@@ -50,5 +50,6 @@ project(":desktop") {
         api "io.github.libktx:ktx-app:$ktxVersion"
         api "io.github.libktx:ktx-math:$ktxVersion"
         api "io.github.libktx:ktx-graphics:$ktxVersion"
+        implementation("com.badlogicgames.gdx:gdx-lwjgl3-glfw-awt-macos:$gdxVersion")
     }
 }
