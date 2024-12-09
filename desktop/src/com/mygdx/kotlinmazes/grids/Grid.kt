@@ -6,4 +6,8 @@ abstract class Grid {
     abstract val size: Int
 
     abstract fun cells(): List<Cell>
+
+    fun resetLinks() {
+        cells().forEach { it.links.clear() }
+    }
 }

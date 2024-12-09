@@ -18,10 +18,6 @@ class MaskedSquareGrid(width: Int, height: Int) : SquareGrid(width, height) {
         mask.clear()
     }
 
-    fun resetLinks() {
-        cells().forEach { it.resetLinks() }
-    }
-
     override val size: Int
         get() = cells().size
 

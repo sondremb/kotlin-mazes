@@ -10,3 +10,19 @@ fun binaryTree(grid: SquareGrid) {
         }
     }
 }
+
+class BinaryTree(val grid: SquareGrid) : Iterator<Unit> {
+    private val cellIterator = grid.cells().iterator()
+
+    override fun hasNext(): Boolean {
+        return cellIterator.hasNext()
+    }
+
+    override fun next() {
+        val cell = cellIterator.next()
+        val neighbors = listOfNotNull(cell.north, cell.east)
+        if (neighbors.isNotEmpty()) {
+            cell.link(neighbors.random())
+        }
+    }
+}

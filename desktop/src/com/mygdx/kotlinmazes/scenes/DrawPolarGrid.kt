@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
 import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
-import com.mygdx.kotlinmazes.mazegeneration.huntAndKill
+import com.mygdx.kotlinmazes.mazegeneration.wilsons
 import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import com.mygdx.kotlinmazes.utils.graphics.strokeArc
@@ -20,7 +20,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 fun main() {
-    val grid = PolarGrid(50).also { huntAndKill(it) }
+    val grid = PolarGrid(50).also { wilsons(it) }
     val distance = Distance(grid[0][0])
     playScene(DrawPolarGrid(grid, distance))
 }
