@@ -39,7 +39,7 @@ class WilsonsAnimated(private val grid: HexGrid) : Scene() {
                 drawer.fill(it, if (it.links.isEmpty()) Color.GRAY else Color.WHITE)
             }
             shapeRenderer.color = Color.GRAY
-            grid.cells().forEach(drawer::drawBorders)
+            grid.cells().forEach(drawer::drawUnlinkedBorders)
             return
         }
         grid.cells().forEach {
@@ -55,10 +55,10 @@ class WilsonsAnimated(private val grid: HexGrid) : Scene() {
                 drawer.fill(it, Color.GRAY)
             } else {
                 drawer.fill(it, Color.WHITE)
-                drawer.drawBorders(it, Color.GRAY)
+                drawer.drawUnlinkedBorders(it, Color.GRAY)
             }
         }
         shapeRenderer.color = Color.GRAY
-        grid.cells().forEach(drawer::drawBorders)
+        grid.cells().forEach(drawer::drawUnlinkedBorders)
     }
 }

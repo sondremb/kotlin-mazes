@@ -3,11 +3,13 @@ package com.mygdx.kotlinmazes.grids.square
 import com.mygdx.kotlinmazes.grids.Grid
 
 open class SquareGrid(val height: Int, val width: Int) : Grid() {
-    val grid: Array<Array<SquareCell>> = Array(height) { row -> Array(width) { column -> SquareCell(row, column) } }
+    val grid: List<List<SquareCell>> = List(height) { row ->
+        List(width) { column -> SquareCell(row, column) }
+    }
 
     init {
-        for (row in grid) {
-            for (cell in row) {
+        grid.forEach { row ->
+            row.forEach { cell ->
                 val r = cell.row
                 val c = cell.column
 
@@ -19,16 +21,13 @@ open class SquareGrid(val height: Int, val width: Int) : Grid() {
         }
     }
 
-    override fun cells() = grid.flatten()
-
     fun get(row: Int, column: Int): SquareCell? {
         return grid.getOrNull(row)?.getOrNull(column)
     }
 
-    override fun randomCell(): SquareCell {
-        return grid.random().random()
-    }
+    override fun cells() = grid.flatten()
 
-    val rows get() = grid
+    override fun randomCell() = grid.random().random()
+
     override val size get() = height * width
 }

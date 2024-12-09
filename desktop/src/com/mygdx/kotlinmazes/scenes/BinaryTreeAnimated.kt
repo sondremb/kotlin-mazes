@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.BinaryTree
+import com.mygdx.kotlinmazes.mazegeneration.RecursiveDivision
 import com.mygdx.kotlinmazes.playScene
 
 fun main() {
@@ -22,11 +22,11 @@ class BinaryTreeAnimated : Scene() {
     private var isPlaying = false
     private var timeSinceLastUpdate = 0f
     lateinit var grid: SquareGrid
-    lateinit var drawer: SquareGridDrawer
-    private var algo: BinaryTree? = null
+    private lateinit var drawer: SquareGridDrawer
+    private var algo: RecursiveDivision? = null
     override fun init() {
         super.init()
-        val size = 5
+        val size = 16
         grid = SquareGrid(size, size)
         val sidelength = (EngineConfig.VIEWPORT_HEIGHT - 20) / size
         drawer = SquareGridDrawer(shapeRenderer, sidelength)
@@ -41,19 +41,19 @@ class BinaryTreeAnimated : Scene() {
         }
         if (shouldUpdate()) {
             timeSinceLastUpdate = 0f
-            algo = algo ?: BinaryTree(grid!!)
+            algo = algo ?: RecursiveDivision(grid!!)
             if (algo!!.hasNext()) {
                 algo!!.next()
             }
         }
-        grid.cells().forEach { drawer.drawBorders(it, Color.GRAY) }
+        grid.cells().forEach { drawer.drawUnlinkedBorders(it, Color.GRAY) }
     }
 
     private fun shouldUpdate(): Boolean {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             isPlaying = !isPlaying
         }
-        if (isPlaying && timeSinceLastUpdate > 0.5f || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+        if (isPlaying && timeSinceLastUpdate > 0.2f || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             return true
         }
         return false

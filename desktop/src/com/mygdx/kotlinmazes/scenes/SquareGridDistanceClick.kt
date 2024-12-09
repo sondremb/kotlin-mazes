@@ -9,13 +9,13 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 
 fun main() {
-    val grid = SquareGrid(50, 80).also { aldousBroder(it) }
+    val grid = SquareGrid(50, 80).also { AldousBroder(it).forEach {} }
     playScene(SquareGridDistanceClick(grid))
 }
 
@@ -24,13 +24,7 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
     private var distance: Distance? = null
     private var hoveredCell: SquareCell? = null
     private lateinit var drawer: SquareGridDrawer
-    private val gradient = Gradient(
-        Color.valueOf("#f0f921"),
-        Color.valueOf("#f89540"),
-        Color.valueOf("#cc4778"),
-        Color.valueOf("#7e03a8"),
-        Color.valueOf("#0d0887")
-    )
+    private val gradient = Gradient.Plasma
 
     override fun init() {
         val width = EngineConfig.VIEWPORT_WIDTH / grid.width
@@ -65,7 +59,7 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
             drawer.fill(hoveredCell!!, Color.CORAL)
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawBorders)
+        grid.cells().forEach(drawer::drawUnlinkedBorders)
     }
 }
 

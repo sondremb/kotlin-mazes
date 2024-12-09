@@ -26,7 +26,7 @@ class HexDrawer(shapeRenderer: ShapeRenderer, val sidelength: Float, val offset:
         }
     }
 
-    override fun drawBorders(cell: HexCell) {
+    override fun drawUnlinkedBorders(cell: HexCell) {
         val coords = cell.coords
         shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
             if (!cell.isLinked(cell.east)) {

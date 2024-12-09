@@ -1,18 +1,30 @@
 package com.mygdx.kotlinmazes.mazegeneration
 
+import com.mygdx.kotlinmazes.grids.Cell
 import com.mygdx.kotlinmazes.grids.Grid
 
-fun aldousBroder(grid: Grid) {
-    var cell = grid.randomCell()
-    var remaining = grid.size - 1
+class AldousBroder(val grid: Grid) : Iterator<Unit> {
+    private var unvisited = grid.size - 1
+    private var cell = grid.randomCell()
 
-    while (remaining > 0) {
-        val neighbor = cell.neighbors().random()
-        if (neighbor.links.isEmpty()) {
-            cell.link(neighbor)
-            remaining -= 1
+    override fun hasNext() = unvisited > 0
+
+    override fun next() {
+        var neighbor: Cell
+        while (true) {
+            val checkedCell = cell
+            neighbor = cell.neighbors().random()
+            var addedCell: Cell? = null
+            if (neighbor.links.isEmpty()) {
+                cell.link(neighbor)
+                addedCell = neighbor
+
+                unvisited--
+                cell = neighbor
+                break
+            }
+            cell = neighbor
         }
 
-        cell = neighbor
     }
 }

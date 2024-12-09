@@ -88,6 +88,46 @@ while stack is not empty
         stack.pop()
 ```
 
+## Recursive division
+
+```raw
+link all cells to their neighbors
+divide(0, 0, width, height)
+
+function divide(x, y, width, height)
+    if width <= 1 or height <= 1
+        return
+    if width > height
+        divideVertically(x, y, width, height)
+    else 
+        divideHorizontally(x, y, width, height)
+        
+function divideVertically(x, y, width, height)
+    divideWidth = random number between 0 and width - 1
+    openingHeight = random number between 0 and height
+    for 0 <= i < height
+        if i != openingHeight
+            find cell at row = y + i, column = x + divideWidth
+            unlink cell with eastern neighbor
+    divide(x, y, divideWidth + 1, height)
+    divide(x + divideWidth + 1, y, width - divideWidth - 1, height)
+    
+function divideHorizontally(x, y, width, height)
+    divideHeight = random number between 0 and height - 1
+    openingWidth = random number between 0 and width
+    for 0 <= i < width
+        if i != openingWidth
+            find cell at row = y + divideHeight, column = x + i
+            unlink cell with northern neighbor
+    divide(x, y, width, divideHeight + 1)
+    divide(x, y + divideHeight + 1, width, height - divideHeight - 1)
+```
+
+> ⚠️ Obs: denne er ikke rett frem å implementere animert (steppet), siden den er rekursiv  
+> Trikset er å bruke en stack med `Room(x, y, width, height)`. I stedet for å kalle `divide` direkte, legg til et nytt
+> `Room` på stacken.
+> Du er ferdig når stacken er tom
+
 ## Andre
 
 - Binary tree
@@ -97,4 +137,3 @@ while stack is not empty
 - Kruskal's
 - Growing tree
 - Prim's
-- Recursive division

@@ -3,6 +3,8 @@ package com.mygdx.kotlinmazes.grids
 abstract class Cell {
     val links = mutableSetOf<Cell>()
 
+    abstract fun neighbors(): List<Cell>
+
     fun link(other: Cell, bidirectional: Boolean = true) {
         links.add(other)
         if (bidirectional) {
@@ -22,6 +24,4 @@ abstract class Cell {
     fun isLinked(other: Cell?): Boolean {
         return links.contains(other)
     }
-
-    abstract fun neighbors(): List<Cell>
 }

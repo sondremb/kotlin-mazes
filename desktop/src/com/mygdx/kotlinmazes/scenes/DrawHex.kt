@@ -7,26 +7,20 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.HexDrawer
 import com.mygdx.kotlinmazes.grids.hex.HexCoords
 import com.mygdx.kotlinmazes.grids.hex.HexGrid
-import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 import kotlin.math.sqrt
 
 fun main() {
-    val grid = HexGrid(40).also { aldousBroder(it) }
+    val grid = HexGrid(40).also { AldousBroder(it).forEach {} }
     val dist = Distance(grid[HexCoords(0, 0)]!!)
     playScene(DrawHexScene(grid, dist))
 }
 
 class DrawHexScene(private val grid: HexGrid, private val dist: Distance) : Scene() {
-    private val gradient = Gradient(
-        Color.valueOf("#f0f921"),
-        Color.valueOf("#f89540"),
-        Color.valueOf("#cc4778"),
-        Color.valueOf("#7e03a8"),
-        Color.valueOf("#0d0887")
-    ).sampler(0f, dist.max.toFloat())
+    private val gradient = Gradient.Plasma.sampler(0f, dist.max.toFloat())
 
     override fun draw() {
         ScreenUtils.clear(1f, 1f, 1f, 1f)
@@ -40,6 +34,6 @@ class DrawHexScene(private val grid: HexGrid, private val dist: Distance) : Scen
             drawer.fill(it, gradient.sample(dist[it].toFloat()))
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawBorders)
+        grid.cells().forEach(drawer::drawUnlinkedBorders)
     }
 }

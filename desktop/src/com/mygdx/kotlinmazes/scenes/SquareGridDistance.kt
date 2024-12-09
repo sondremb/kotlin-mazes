@@ -19,15 +19,7 @@ fun main() {
 
 class SquareGridDistance(private val grid: SquareGrid, private val distance: Distance) : Scene() {
 
-    // farger basert på colormapet "plasma" fra matplotlib
-    // hex-koder hentet fra https://waldyrious.net/viridis-palette-generator/
-    private val gradient = Gradient(
-        Color.valueOf("#f0f921"),
-        Color.valueOf("#f89540"),
-        Color.valueOf("#cc4778"),
-        Color.valueOf("#7e03a8"),
-        Color.valueOf("#0d0887")
-    ).sampler(0f, distance.max.toFloat())
+    private val gradient = Gradient.Plasma.sampler(0f, distance.max.toFloat())
 
     private lateinit var drawer: SquareGridDrawer;
 
@@ -42,8 +34,9 @@ class SquareGridDistance(private val grid: SquareGrid, private val distance: Dis
         ScreenUtils.clear(1f, 1f, 1f, 1f)
         grid.cells().forEach {
             drawer.fill(it, gradient.sample(distance[it].toFloat()))
+            it.resetLinks()
         }
         shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawBorders)
+        grid.cells().forEach(drawer::drawUnlinkedBorders)
     }
 }

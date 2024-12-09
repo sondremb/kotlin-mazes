@@ -9,7 +9,7 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.MaskedSquareGrid
 import com.mygdx.kotlinmazes.grids.square.SquareCell
-import com.mygdx.kotlinmazes.mazegeneration.aldousBroder
+import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
@@ -24,13 +24,7 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
     private var distanceSource: SquareCell? = null
     private var distance: Distance? = null
     private lateinit var drawer: SquareGridDrawer
-    private val gradient = Gradient(
-        Color.valueOf("#f0f921"),
-        Color.valueOf("#f89540"),
-        Color.valueOf("#cc4778"),
-        Color.valueOf("#7e03a8"),
-        Color.valueOf("#0d0887")
-    )
+    private val gradient = Gradient.Plasma
     private var prevHoveredCell: SquareCell? = null
     private var isLeftHeld = false
     private var isRightHeld = false
@@ -58,7 +52,7 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
     private fun handleSomething(cell: SquareCell) {
         distanceSource = cell
         grid.resetLinks()
-        aldousBroder(grid)
+        AldousBroder(grid).forEach {}
         distance = Distance(cell)
     }
 

@@ -8,6 +8,6 @@ abstract class Grid {
     abstract fun cells(): List<Cell>
 
     fun resetLinks() {
-        cells().forEach { it.links.clear() }
+        cells().forEach { it.resetLinks() }
     }
 }

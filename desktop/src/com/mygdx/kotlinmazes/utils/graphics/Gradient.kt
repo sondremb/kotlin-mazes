@@ -30,6 +30,20 @@ class Gradient(stops: List<GradientStop>) {
     fun sampler(min: Float, max: Float): GradientSampler {
         return GradientSampler(this, min, max)
     }
+
+    companion object {
+        /**
+         * farger basert på colormapet "plasma" fra matplotlib
+         * hex-koder hentet fra https://waldyrious.net/viridis-palette-generator/
+         */
+        val Plasma = Gradient(
+            Color.valueOf("#f0f921"),
+            Color.valueOf("#f89540"),
+            Color.valueOf("#cc4778"),
+            Color.valueOf("#7e03a8"),
+            Color.valueOf("#0d0887")
+        )
+    }
 }
 
 class GradientSampler(private val gradient: Gradient, private val min: Float, private val max: Float) {

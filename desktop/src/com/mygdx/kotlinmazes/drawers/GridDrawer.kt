@@ -10,9 +10,9 @@ abstract class GridDrawer<T>(protected val shapeRenderer: ShapeRenderer) {
         shapeRenderer.withColor(color) { fill(cell) }
     }
 
-    abstract fun drawBorders(cell: T)
-    fun drawBorders(cell: T, color: Color) {
-        shapeRenderer.withColor(color) { drawBorders(cell) }
+    abstract fun drawUnlinkedBorders(cell: T)
+    fun drawUnlinkedBorders(cell: T, color: Color) {
+        shapeRenderer.withColor(color) { drawUnlinkedBorders(cell) }
     }
 
     abstract fun drawAllBorders(cell: T)

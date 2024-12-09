@@ -5,7 +5,7 @@ import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import kotlin.random.Random
 
 fun sideWinder(grid: SquareGrid) {
-    grid.rows.forEach { row ->
+    grid.grid.forEach { row ->
         var run = mutableListOf<SquareCell>()
         row.forEach { cell ->
             run.add(cell)

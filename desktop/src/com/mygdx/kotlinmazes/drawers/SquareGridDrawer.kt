@@ -17,7 +17,7 @@ class SquareGridDrawer(shapeRenderer: ShapeRenderer, private val sideLength: Flo
         }
     }
 
-    override fun drawBorders(cell: SquareCell) {
+    override fun drawUnlinkedBorders(cell: SquareCell) {
         shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
             if (!cell.isLinked(cell.north)) {
                 shapeRenderer.line(topLeft(cell), topRight(cell))
