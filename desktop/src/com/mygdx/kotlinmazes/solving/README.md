@@ -1,6 +1,6 @@
 # Løsing av labyrinter
 
-Okei, you got me. Her har jeg åpenbart ikke lagt inn nok innsats.
+Okei, you got me. Her har jeg åpenbart ikke lagt inn like mye innsats.
 
 ## Animert DFS
 
