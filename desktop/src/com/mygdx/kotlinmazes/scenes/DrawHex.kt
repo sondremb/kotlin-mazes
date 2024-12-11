@@ -8,7 +8,6 @@ import com.mygdx.kotlinmazes.drawers.HexDrawer
 import com.mygdx.kotlinmazes.grids.hex.HexCoords
 import com.mygdx.kotlinmazes.grids.hex.HexGrid
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
-import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 import kotlin.math.sqrt
@@ -16,7 +15,7 @@ import kotlin.math.sqrt
 fun main() {
     val grid = HexGrid(40).also { AldousBroder(it).forEach {} }
     val dist = Distance(grid[HexCoords(0, 0)]!!)
-    playScene(DrawHexScene(grid, dist))
+    DrawHexScene(grid, dist).play()
 }
 
 class DrawHexScene(private val grid: HexGrid, private val dist: Distance) : Scene() {

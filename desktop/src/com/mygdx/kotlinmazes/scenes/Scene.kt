@@ -1,6 +1,8 @@
 package com.mygdx.kotlinmazes.scenes
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
@@ -19,6 +21,14 @@ abstract class Scene : KtxApplicationAdapter {
     lateinit var viewport: Viewport
     lateinit var camera: Camera
     var showViewportEdge = false
+
+    fun play() {
+        val config = Lwjgl3ApplicationConfiguration()
+        config.setForegroundFPS(60)
+        config.setTitle("Kotlin Mazes")
+        config.setWindowedMode(EngineConfig.VIEWPORT_WIDTH.toInt() / 2, EngineConfig.VIEWPORT_HEIGHT.toInt() / 2)
+        Lwjgl3Application(this, config)
+    }
 
     final override fun create() {
         camera = OrthographicCamera(EngineConfig.VIEWPORT_WIDTH, EngineConfig.VIEWPORT_HEIGHT).also {

@@ -6,13 +6,12 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.HexDrawer
 import com.mygdx.kotlinmazes.grids.hex.HexGrid
 import com.mygdx.kotlinmazes.mazegeneration.Wilsons
-import com.mygdx.kotlinmazes.playScene
 import kotlin.math.min
 import kotlin.math.sqrt
 
 fun main() {
     val grid = HexGrid(15)
-    playScene(WilsonsAnimated(grid))
+    WilsonsAnimated(grid).play()
 }
 
 class WilsonsAnimated(private val grid: HexGrid) : Scene() {

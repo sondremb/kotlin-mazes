@@ -10,13 +10,12 @@ import com.mygdx.kotlinmazes.findPath
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
-import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 
 fun main() {
     val grid = SquareGrid(50, 80).also { AldousBroder(it).forEach {} }
-    playScene(SquareGridPaths(grid))
+    SquareGridPaths(grid).play()
 }
 
 class SquareGridPaths(private val grid: SquareGrid) : Scene() {

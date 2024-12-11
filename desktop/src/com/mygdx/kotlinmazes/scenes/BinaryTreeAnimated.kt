@@ -8,11 +8,9 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.RecursiveDivision
-import com.mygdx.kotlinmazes.playScene
 
 fun main() {
-    val binaryTreeAnimated = BinaryTreeAnimated()
-    playScene(binaryTreeAnimated)
+    BinaryTreeAnimated().play()
 }
 
 class BinaryTreeAnimated : Scene() {

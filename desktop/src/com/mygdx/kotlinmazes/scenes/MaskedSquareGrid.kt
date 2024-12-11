@@ -10,13 +10,12 @@ import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.MaskedSquareGrid
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
-import com.mygdx.kotlinmazes.playScene
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
 import kotlin.math.min
 
 fun main() {
     val grid = MaskedSquareGrid(108, 192)
-    playScene(MaskedSquareGridScene(grid))
+    MaskedSquareGridScene(grid).play()
 }
 
 class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
