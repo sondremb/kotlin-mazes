@@ -20,7 +20,7 @@ abstract class Scene : KtxApplicationAdapter {
     lateinit var shapeRenderer: ShapeRenderer
     lateinit var viewport: Viewport
     lateinit var camera: Camera
-    var showViewportEdge = false
+    var showViewportEdge = true
 
     fun play() {
         val config = Lwjgl3ApplicationConfiguration()
@@ -50,7 +50,7 @@ abstract class Scene : KtxApplicationAdapter {
         if (showViewportEdge) {
             shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
                 shapeRenderer.color = Color.RED
-                shapeRenderer.rect(0f, 0f, EngineConfig.VIEWPORT_WIDTH, EngineConfig.VIEWPORT_HEIGHT)
+                shapeRenderer.rect(0f, 0f, EngineConfig.VIEWPORT_WIDTH - 1f, EngineConfig.VIEWPORT_HEIGHT - 1f)
             }
         }
     }
