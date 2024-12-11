@@ -8,6 +8,7 @@ import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.RecursiveDivision
+import com.mygdx.kotlinmazes.utils.math.inset
 
 fun main() {
     BinaryTreeAnimated().play()
@@ -26,8 +27,7 @@ class BinaryTreeAnimated : Scene() {
         super.init()
         val size = 16
         grid = SquareGrid(size, size)
-        val sidelength = (EngineConfig.VIEWPORT_HEIGHT - 20) / size
-        drawer = SquareGridDrawer(shapeRenderer, sidelength)
+        drawer = SquareGridDrawer(shapeRenderer, grid, EngineConfig.VIEWPORT_RECT.inset(10f))
     }
 
     override fun draw() {
@@ -44,7 +44,7 @@ class BinaryTreeAnimated : Scene() {
                 algo!!.next()
             }
         }
-        grid.cells().forEach { drawer.drawUnlinkedBorders(it, Color.GRAY) }
+        drawer.drawUnlinkedBorders(Color.GRAY)
     }
 
     private fun shouldUpdate(): Boolean {

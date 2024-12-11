@@ -5,13 +5,11 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
-import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
-import kotlin.math.min
 
 fun main() {
     val grid = SquareGrid(50, 80).also { AldousBroder(it).forEach {} }
@@ -26,10 +24,7 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
     private val gradient = Gradient.Plasma
 
     override fun init() {
-        val width = EngineConfig.VIEWPORT_WIDTH / grid.width
-        val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
-        val sideLength = min(width, height)
-        drawer = SquareGridDrawer(shapeRenderer, sideLength)
+        drawer = SquareGridDrawer(shapeRenderer, grid)
     }
 
     override fun update() {

@@ -27,7 +27,7 @@ class DrawHexScene(private val grid: HexGrid, private val dist: Distance) : Scen
         val sidelengthBasedOnWidth = EngineConfig.VIEWPORT_WIDTH / (3f * grid.radius + 2f)
         val sidelengthBasedOnHeight = EngineConfig.VIEWPORT_HEIGHT / ((2f * grid.radius + 1f) * sqrt(3f))
         val sidelength = min(sidelengthBasedOnWidth, sidelengthBasedOnHeight)
-        val drawer = HexDrawer(shapeRenderer, sidelength, EngineConfig.VIEWPORT_CENTER)
+        val drawer = HexDrawer(shapeRenderer, grid)
 
         grid.cells().forEach {
             drawer.fill(it, gradient.sample(dist[it].toFloat()))

@@ -5,13 +5,11 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
-import com.mygdx.kotlinmazes.EngineConfig
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.MaskedSquareGrid
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
-import kotlin.math.min
 
 fun main() {
     val grid = MaskedSquareGrid(108, 192)
@@ -34,10 +32,7 @@ class MaskedSquareGridScene(private val grid: MaskedSquareGrid) : Scene() {
     private var currentDistance = 0
 
     override fun init() {
-        val width = EngineConfig.VIEWPORT_WIDTH / grid.width
-        val height = EngineConfig.VIEWPORT_HEIGHT / grid.height
-        val sideLength = min(width, height)
-        drawer = SquareGridDrawer(shapeRenderer, sideLength)
+        drawer = SquareGridDrawer(shapeRenderer, grid)
         //grid.allCells().forEach(grid::mask)
     }
 

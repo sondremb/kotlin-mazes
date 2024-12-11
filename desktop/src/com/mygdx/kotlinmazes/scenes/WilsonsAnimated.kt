@@ -23,7 +23,7 @@ class WilsonsAnimated(private val grid: HexGrid) : Scene() {
         val sidelengthBasedOnHeight = EngineConfig.VIEWPORT_HEIGHT / ((2f * grid.radius + 1f) * sqrt(3f))
         val sidelength = min(sidelengthBasedOnWidth, sidelengthBasedOnHeight)
 
-        drawer = HexDrawer(shapeRenderer, sidelength, EngineConfig.VIEWPORT_CENTER)
+        drawer = HexDrawer(shapeRenderer, grid)
     }
 
     override fun draw() {
