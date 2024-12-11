@@ -1,4 +1,4 @@
-package com.mygdx.kotlinmazes
+package com.mygdx.kotlinmazes.solving
 
 import com.mygdx.kotlinmazes.grids.Cell
 import kotlin.math.max

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Config
-import com.mygdx.kotlinmazes.Distance
+import com.mygdx.kotlinmazes.solving.Distance
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid

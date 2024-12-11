@@ -3,7 +3,7 @@ package com.mygdx.kotlinmazes.scenes
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
-import com.mygdx.kotlinmazes.Distance
+import com.mygdx.kotlinmazes.solving.Distance
 import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.mazegeneration.wilsons
