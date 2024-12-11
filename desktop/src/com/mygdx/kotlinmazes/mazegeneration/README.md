@@ -16,6 +16,9 @@ Det kan hende du m책 utvide `Grid`-klassen med noen metoder for 책 f책 det til �
 
 ## Aldous-Broder
 
+![image](../../../../../../assets/algopictures/aldous-broder.png)
+![image](../../../../../../assets/algopictures/aldous-broder-colored.png)
+
 ```raw
 choose a random cell
 set remaining count to number of cells - 1
@@ -29,6 +32,9 @@ while remaining count > 0
 ```
 
 ## Wilson's
+
+![image](../../../../../../assets/algopictures/wilsons.png)
+![image](../../../../../../assets/algopictures/wilsons-colored.png)
 
 ```raw
 mark all cells as unvisited
@@ -51,6 +57,9 @@ while there are unvisited cells
 
 ## Hunt and kill
 
+![image](../../../../../../assets/algopictures/hunt-and-kill.png)
+![image](../../../../../../assets/algopictures/hunt-and-kill-colored.png)
+
 ```raw
 mark all cells as unvisited
 current = random cell
@@ -71,6 +80,9 @@ while there are unvisited cells
 
 ## Recursive backtracker
 
+![image](../../../../../../assets/algopictures/recursive-backtracker.png)
+![image](../../../../../../assets/algopictures/recursive-backtracker-colored.png)
+
 ```raw
 mark all cells as unvisited
 first = random cell (or start at a specific cell)
@@ -89,6 +101,9 @@ while stack is not empty
 ```
 
 ## Recursive division
+
+![image](../../../../../../assets/algopictures/recursive-division.png)
+![image](../../../../../../assets/algopictures/recursive-division-colored.png)
 
 ```raw
 link all cells to their neighbors
@@ -128,12 +143,33 @@ function divideHorizontally(x, y, width, height)
 > `Room` p책 stacken.
 > Du er ferdig n책r stacken er tom
 
+## Prim's
+
+![image](../../../../../../assets/algopictures/prims.png)
+![image](../../../../../../assets/algopictures/prims-colored.png)
+
+```raw
+mark all cells as unvisited
+first = random cell (or start at a specific cell)
+mark fist as visited
+active = [first]
+
+while active is not empty
+    current = random active cell
+    candidates = neighbors of current that are unvisited
+    if candidates is not empty
+        neighbor = random candidate
+        link current and neighbor
+        mark neighbor as visited
+        add neighbor to active
+    else
+        remove current from active
+```
+
 ## Andre
 
 - Binary tree
 - Sidewinder
-
 - Eller's
 - Kruskal's
 - Growing tree
-- Prim's
