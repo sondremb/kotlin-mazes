@@ -2,17 +2,15 @@
 
 Det er mange forskjellige måter å generere labyrinter på.
 
-Prøv å implementere algoritmen slik at den kan håndtere de abstrakte `Grid` og `Cell`-klassene, slik at du kan prøve ut
-algoritmen på forskjellige typer grids!
-Det kan hende du må utvide `Grid`-klassen med noen metoder for å få det til å fungere.
-
+Noen algoritmer vil kunne passe på alle grids, mens de som nevner retninger (nord, øst, sør, vest) vil kun fungere
+på `SquareGrid`.
 
 > 💡 **Tips! Holde styr på "unvisited" celler**
 >
 > Ofte står det i pseudokoden at man skal markere celler som unvisited eller visited.
 > Hvis celler som markeres som visited, også alltid linkes til en annen celle, kan man bruke hvorvidt cellen har en
 > lenke for å sjekke om den er visited.
-> Altså ved å sjekke `cell.links.isEmpty()` eller `cell.links.isNotEmpty()`
+> Altså ved å sjekke `cell.links.isEmpty()` eller `cell.links.isNotEmpty()` i stedet for en dedikert datastruktur.
 
 ## Binary Tree
 
