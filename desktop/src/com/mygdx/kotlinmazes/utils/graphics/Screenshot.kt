@@ -9,10 +9,6 @@ import java.util.zip.Deflater
 
 
 class ScreenshotFactory(private val prefix: String = "screenshot") {
-    init {
-        println(Gdx.files.local("").file().absolutePath)
-    }
-
     fun getScreenshot() {
         val pixmap = Pixmap.createFromFrameBuffer(0, 0, Gdx.graphics.width, Gdx.graphics.height)
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss"))
