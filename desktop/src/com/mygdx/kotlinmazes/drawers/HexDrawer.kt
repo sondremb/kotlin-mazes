@@ -3,7 +3,7 @@ package com.mygdx.kotlinmazes.drawers
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.grids.hex.HexCell
 import com.mygdx.kotlinmazes.grids.hex.HexCoords
 import com.mygdx.kotlinmazes.grids.hex.HexGrid
@@ -21,7 +21,7 @@ class HexDrawer(shapeRenderer: ShapeRenderer, private val grid: HexGrid, boundin
     private val offset: Vector2
 
     init {
-        val rect = boundingRect ?: Rectangle(0F, 0F, EngineConfig.VIEWPORT_WIDTH, EngineConfig.VIEWPORT_HEIGHT)
+        val rect = boundingRect ?: Rectangle(0F, 0F, Config.VIEWPORT_WIDTH, Config.VIEWPORT_HEIGHT)
         val minX = grid.cells().minOf { Companion.northWest(it.coords).x }
         val maxX = grid.cells().maxOf { Companion.southEast(it.coords).x }
         val minY = grid.cells().minOf { Companion.north(it.coords).y }

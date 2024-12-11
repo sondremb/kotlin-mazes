@@ -4,15 +4,18 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.Distance
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
+import com.mygdx.kotlinmazes.utils.graphics.ScreenshotFactory
+import com.mygdx.kotlinmazes.utils.math.inset
 
 fun main() {
-    val grid = SquareGrid(50, 80).also { AldousBroder(it).forEach {} }
+    val grid = SquareGrid(20, 20)
     SquareGridDistanceClick(grid).play()
 }
 
@@ -21,10 +24,19 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
     private var distance: Distance? = null
     private var hoveredCell: SquareCell? = null
     private lateinit var drawer: SquareGridDrawer
-    private val gradient = Gradient.Plasma
+    private var gradient = Gradient(Color.WHITE, Color.PURPLE)
+    private lateinit var screenshotFactory: ScreenshotFactory
 
     override fun init() {
-        drawer = SquareGridDrawer(shapeRenderer, grid)
+        drawer = SquareGridDrawer(shapeRenderer, grid, Config.VIEWPORT_RECT.inset(1f))
+        runAlgorithm()
+    }
+
+    private fun runAlgorithm() {
+        grid.resetLinks()
+        distance = null
+        screenshotFactory = ScreenshotFactory("ald-bro")
+        AldousBroder.on(grid)
     }
 
     override fun update() {
@@ -34,6 +46,9 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
 
         if (hoveredCell != null && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             distance = Distance(hoveredCell!!)
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+            runAlgorithm()
         }
     }
 
@@ -52,8 +67,17 @@ class SquareGridDistanceClick(private val grid: SquareGrid) : Scene() {
         } else if (hoveredCell != null) {
             drawer.fill(hoveredCell!!, Color.CORAL)
         }
-        shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawUnlinkedBorders)
+        drawer.drawUnlinkedBorders(Color.BLACK)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            screenshotFactory.getScreenshot()
+        }
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
+            gradient = Gradient(Color.WHITE, randomColor())
+        }
+    }
+
+    private fun randomColor(): Color {
+        return Color().fromHsv(Math.random().toFloat() * 360, 0.85f, 0.5f).also { it.a = 1f }
     }
 }
 

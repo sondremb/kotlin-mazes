@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.Distance
-import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.grids.polar.PolarGrid
 import com.mygdx.kotlinmazes.mazegeneration.wilsons
 import com.mygdx.kotlinmazes.utils.graphics.Gradient
@@ -39,14 +39,14 @@ class DrawPolarGrid(private val grid: PolarGrid, private val distance: Distance)
             val c = cell.column
             val theta = 2f * PI / grid[r].size
             // vi bruker høyden for å beregne radius, fordi den er minst
-            val cellHeight = EngineConfig.VIEWPORT_HEIGHT / (2f * grid.rows)
+            val cellHeight = Config.VIEWPORT_HEIGHT / (2f * grid.rows)
             val outerRadius = (r + 1) * cellHeight
             val thetaCcw = c * theta
             shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
                 it.color = gradient.sample(distance[cell].toFloat())
                 it.arc(
-                    EngineConfig.VIEWPORT_CENTER.x,
-                    EngineConfig.VIEWPORT_CENTER.y,
+                    Config.VIEWPORT_CENTER.x,
+                    Config.VIEWPORT_CENTER.y,
                     outerRadius,
                     toDegrees(thetaCcw).toFloat(),
                     toDegrees(theta).toFloat(),
@@ -63,7 +63,7 @@ class DrawPolarGrid(private val grid: PolarGrid, private val distance: Distance)
             }
             val theta = 2f * PI / grid[r].size
             // vi bruker høyden for å beregne radius, fordi den er minst
-            val cellHeight = EngineConfig.VIEWPORT_HEIGHT / (2f * grid.rows)
+            val cellHeight = Config.VIEWPORT_HEIGHT / (2f * grid.rows)
             val innerRadius = r * cellHeight
             val outerRadius = (r + 1) * cellHeight
             val thetaCw = (c + 1) * theta
@@ -71,8 +71,8 @@ class DrawPolarGrid(private val grid: PolarGrid, private val distance: Distance)
             if (!cell.isLinked(cell.inwards)) {
                 shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
                     it.strokeArc(
-                        EngineConfig.VIEWPORT_CENTER.x,
-                        EngineConfig.VIEWPORT_CENTER.y,
+                        Config.VIEWPORT_CENTER.x,
+                        Config.VIEWPORT_CENTER.y,
                         radius = innerRadius,
                         start = toDegrees(thetaCcw).toFloat(),
                         degrees = toDegrees(theta).toFloat(),
@@ -82,8 +82,8 @@ class DrawPolarGrid(private val grid: PolarGrid, private val distance: Distance)
             }
             if (!cell.isLinked(cell.cw)) {
                 val base = vec2(cos(thetaCw).toFloat(), sin(thetaCw).toFloat())
-                val from = (base * innerRadius) + EngineConfig.VIEWPORT_CENTER
-                val to = (base * outerRadius) + EngineConfig.VIEWPORT_CENTER
+                val from = (base * innerRadius) + Config.VIEWPORT_CENTER
+                val to = (base * outerRadius) + Config.VIEWPORT_CENTER
                 shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
                     shapeRenderer.line(from, to)
                 }
@@ -92,9 +92,9 @@ class DrawPolarGrid(private val grid: PolarGrid, private val distance: Distance)
         }
         shapeRenderer.use(ShapeRenderer.ShapeType.Line) {
             it.circle(
-                EngineConfig.VIEWPORT_CENTER.x,
-                EngineConfig.VIEWPORT_CENTER.y,
-                EngineConfig.VIEWPORT_HEIGHT / 2f,
+                Config.VIEWPORT_CENTER.x,
+                Config.VIEWPORT_CENTER.y,
+                Config.VIEWPORT_HEIGHT / 2f,
                 100
             )
         }

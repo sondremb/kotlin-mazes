@@ -3,7 +3,7 @@ package com.mygdx.kotlinmazes.drawers
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.grids.square.SquareCell
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
 import com.mygdx.kotlinmazes.utils.math.vec2
@@ -24,7 +24,7 @@ class SquareGridDrawer(
     private val offset: Vector2
 
     init {
-        val rect = boundingRect ?: Rectangle(0F, 0F, EngineConfig.VIEWPORT_WIDTH, EngineConfig.VIEWPORT_HEIGHT)
+        val rect = boundingRect ?: Rectangle(0F, 0F, Config.VIEWPORT_WIDTH, Config.VIEWPORT_HEIGHT)
         sideLength = min(rect.width / grid.width, rect.height / grid.height)
         offset = Vector2(
             rect.x + (rect.width - sideLength * grid.width) / 2,

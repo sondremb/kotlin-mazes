@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
-import com.mygdx.kotlinmazes.EngineConfig
+import com.mygdx.kotlinmazes.Config
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.RecursiveDivision
+import com.mygdx.kotlinmazes.mazegeneration.BinaryTree
 import com.mygdx.kotlinmazes.utils.math.inset
 
 fun main() {
@@ -22,12 +22,12 @@ class BinaryTreeAnimated : Scene() {
     private var timeSinceLastUpdate = 0f
     lateinit var grid: SquareGrid
     private lateinit var drawer: SquareGridDrawer
-    private var algo: RecursiveDivision? = null
+    private var algo: BinaryTree? = null
     override fun init() {
         super.init()
         val size = 16
         grid = SquareGrid(size, size)
-        drawer = SquareGridDrawer(shapeRenderer, grid, EngineConfig.VIEWPORT_RECT.inset(10f))
+        drawer = SquareGridDrawer(shapeRenderer, grid, Config.VIEWPORT_RECT.inset(10f))
     }
 
     override fun draw() {
@@ -39,7 +39,7 @@ class BinaryTreeAnimated : Scene() {
         }
         if (shouldUpdate()) {
             timeSinceLastUpdate = 0f
-            algo = algo ?: RecursiveDivision(grid!!)
+            algo = algo ?: BinaryTree(grid!!)
             if (algo!!.hasNext()) {
                 algo!!.next()
             }
