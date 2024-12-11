@@ -7,13 +7,13 @@ Scenen [SquareGridDistance.kt](SquareGridDistance.kt) har flotte farger, men sav
 Scenen [DrawHex.kt](DrawHex.kt) er litt trist - det er bare et Hex-grid, uten noe labyrint 😢. Følg stegene der inne for
 å gi scenen litt liv!
 
-Lag en scene hvor du kan klikke på to celler, så tegnes veien mellom de to.
-
 Lag en scene hvor du kan klikke på en celle, så tegnes veien til den fjerneste cellen.
 
 Lag en scene hvor du starter i en celle, og navigerer seg rundt med piltastene.
 
 Lag en scene hvor du starter i en celle, og navigerer seg rundt med musa - men kan ikke gå forbi vegger.
+
+Titt innom de eksisterende scenene, og bli inspirert!
 
 ## Å lage en ny Scene
 

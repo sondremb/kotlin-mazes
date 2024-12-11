@@ -12,7 +12,7 @@ Et annet alternativ er å returnere en `Sequence<Unit>`, og kalle `yield(Unit)` 
 
 For å ta i bruk en algoritme, må du lage en ny Scene som bruker algoritmen.
 Se [scenes/README.md](../scenes/README.md) for mer info, eller [BinaryTree.kt](../scenes/BinaryTree.kt)
-og [BinaryTreeAnimated.kt](../scenes/BinaryTreeAnimated.kt) for eksempler
+og [BinaryTreeAnimated.kt](../scenes/BinaryTreeAnimated.kt) for eksempler.
 
 ## Algopendium
 

@@ -44,7 +44,7 @@ class SquareGridDrawer(
 
     override fun fill() {
         shapeRenderer.use(ShapeRenderer.ShapeType.Filled) {
-            grid.cells().forEach { fill(it) }
+            grid.cells().forEach { fillInternal(it) }
         }
     }
 
@@ -101,7 +101,10 @@ class SquareGridDrawer(
     private fun topRight(cell: SquareCell) = offset + vec2(cell.column + 1, cell.row + 1) * sideLength
 
     fun gridCoordsFromScreenCoords(screenCoords: Vector2): Pair<Int, Int> {
-        return Pair((screenCoords.x / sideLength).toInt(), (screenCoords.y / sideLength).toInt())
+        return Pair(
+            ((screenCoords.x - offset.x) / sideLength).toInt(),
+            ((screenCoords.y - offset.y) / sideLength).toInt()
+        )
     }
 
     fun cellAtScreenCoords(screenCoords: Vector2): SquareCell? {

@@ -12,12 +12,9 @@ class AldousBroder(val grid: Grid) : Iterator<Unit> {
     override fun next() {
         var neighbor: Cell
         while (true) {
-            val checkedCell = cell
             neighbor = cell.neighbors().random()
-            var addedCell: Cell? = null
             if (neighbor.links.isEmpty()) {
                 cell.link(neighbor)
-                addedCell = neighbor
 
                 unvisited--
                 cell = neighbor

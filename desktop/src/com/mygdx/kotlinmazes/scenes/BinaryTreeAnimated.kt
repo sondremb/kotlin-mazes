@@ -25,8 +25,7 @@ class BinaryTreeAnimated : Scene() {
     private var algo: BinaryTree? = null
     override fun init() {
         super.init()
-        val size = 16
-        grid = SquareGrid(size, size)
+        grid = SquareGrid(20, 20)
         drawer = SquareGridDrawer(shapeRenderer, grid, Config.VIEWPORT_RECT.inset(10f))
     }
 

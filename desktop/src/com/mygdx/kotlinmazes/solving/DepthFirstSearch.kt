@@ -47,7 +47,9 @@ class DepthFirstSearch(private val grid: Grid, private val from: Cell, private v
     enum class State { Searching, Backtracking }
 }
 
-fun depthFirstSearch(grid: Grid, from: Cell, to: Cell): List<Cell> {
+// gjør denne animert!
+// hvis du lager den som en klasse, og stack og visited ikke er private, kan du tegne de med forskjellige farger i scenen din, for å visualisere algoritmen
+fun depthFirstSearch(from: Cell, to: Cell): List<Cell> {
     val stack = mutableListOf<Cell>()
     val visited = mutableSetOf<Cell>()
     val cameFrom = mutableMapOf<Cell, Cell?>()
