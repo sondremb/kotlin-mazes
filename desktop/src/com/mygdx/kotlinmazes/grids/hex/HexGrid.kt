@@ -3,16 +3,32 @@ package com.mygdx.kotlinmazes.grids.hex
 import com.mygdx.kotlinmazes.grids.Cell
 import com.mygdx.kotlinmazes.grids.Grid
 
-class HexGrid(val radius: Int) : Grid() {
+class HexGrid() : Grid() {
     private val grid = HashMap<HexCoords, HexCell>()
 
-    init {
+    constructor(radius: Int) : this() {
         val center = HexCell(0, 0)
         grid[HexCoords(0, 0)] = center
-        for (coordinate in center.coords.getCellsAround(radius)) {
-            grid[coordinate] = HexCell(coordinate.q, coordinate.r)
-        }
+        center.coords.getCellsAround(radius).forEach(::addCell)
+        setupNeighbors()
+    }
 
+    constructor(rows: Int, columns: Int) : this() {
+        for (r in 0 until rows) {
+            for (dq in 0 until columns) {
+                val q = -r / 2 + dq
+                addCell(HexCoords(q, r))
+            }
+
+        }
+        setupNeighbors()
+    }
+
+    fun addCell(coords: HexCoords) {
+        grid[coords] = HexCell(coords.q, coords.r)
+    }
+
+    private fun setupNeighbors() {
         grid.values.forEach { cell ->
             cell.northeast = grid[cell.coords + HexCoords.NorthEast]
             cell.east = grid[cell.coords + HexCoords.East]
