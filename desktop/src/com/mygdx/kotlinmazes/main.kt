@@ -2,10 +2,8 @@ package com.mygdx.kotlinmazes
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.AldousBroder
+import com.mygdx.kotlinmazes.scenes.BinaryTreeAnimated
 import com.mygdx.kotlinmazes.scenes.Scene
-import com.mygdx.kotlinmazes.scenes.SquareGridDistance
 import ktx.math.vec2
 
 object EngineConfig {
@@ -17,9 +15,8 @@ object EngineConfig {
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 fun main(arg: Array<String>) {
-    val grid = SquareGrid(50, 80).also { AldousBroder(it).forEach {} }
-    val dists = Distance(grid.get(grid.height / 2, grid.width / 2)!!)
-    playScene(SquareGridDistance(grid, dists))
+    val binaryTreeAnimated = BinaryTreeAnimated()
+    playScene(binaryTreeAnimated)
 }
 
 fun playScene(scene: Scene) {

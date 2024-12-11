@@ -31,19 +31,3 @@ En scene hvor du navigerer selv
 Klikk to punkter, finn raskeste vei
 Klikk et punkt, finn fjerneste punkt
 Lengste distanse
-
-Lage presentasjon
-Lage noe med solving
-Lage noe stepped med solving
-Lage steppet med taster
-Sjekke at alle eksistere scener kjører
-Gjøre drawer til et interface
-Lage noe generisk med drawer
-
-Hva skal være igjen?
-SquareGrid
-PolarGrid
-MaskedGrid?
-BinaryTree stepped
-En "generisk" algoritme - AldousBroder?
-DFS
