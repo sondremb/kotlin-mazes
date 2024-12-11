@@ -9,6 +9,8 @@
 > Gira på å bare hoppe rett i det? Koden ligger
 > i [desktop/src/com/mygdx/kotlinmazes](desktop/src/com/mygdx/kotlinmazes/scenes/BinaryTreeAnimated.kt)
 
+Slides er i [slides/slides.key](slides/slides.key) og [slides/slides.pdf](slides/slides.pdf)
+
 ## Hva kan jeg gjøre?
 
 - Implementer en annen labyrint-algoritme. Sjekk
