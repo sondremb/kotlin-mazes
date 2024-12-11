@@ -1,6 +1,20 @@
 # Labyrint-genererende funksjoner
 
-Det er mange forskjellige måter å generere labyrinter på.
+## Å lage en ny algoritme
+
+Lag en ny fil i denne mappa.
+For å lage en "vanlig" algoritme, lag en funksjon som tar inn et grid og muterer det ved å kalle `.link` og `.unlink` på
+cellene.
+
+For å lage en animasjon, kan man f.eks. bruke en klasse som implementerer `Iterator<Unit>`-interfacet, med
+metodene `next()` og `hasNext()`.  
+Et annet alternativ er å returnere en `Sequence<Unit>`, og kalle `yield(Unit)` for hvert steg i loopen.
+
+For å ta i bruk en algoritme, må du lage en ny Scene som bruker algoritmen.
+Se [scenes/README.md](../scenes/README.md) for mer info, eller [BinaryTree.kt](../scenes/BinaryTree.kt)
+og [BinaryTreeAnimated.kt](../scenes/BinaryTreeAnimated.kt) for eksempler
+
+## Algopendium
 
 Noen algoritmer vil kunne passe på alle grids, mens de som nevner retninger (nord, øst, sør, vest) vil kun fungere
 på `SquareGrid`.
@@ -12,7 +26,7 @@ på `SquareGrid`.
 > lenke for å sjekke om den er visited.
 > Altså ved å sjekke `cell.links.isEmpty()` eller `cell.links.isNotEmpty()` i stedet for en dedikert datastruktur.
 
-## Binary Tree
+### Binary Tree
 
 ![image](../../../../../../assets/algopictures/binarytree.png)
 ![image](../../../../../../assets/algopictures/binarytree-colored.png)
@@ -27,7 +41,7 @@ for each cell
     link cell and neighbor
 ```
 
-## Sidewinder
+### Sidewinder
 
 ![image](../../../../../../assets/algopictures/sidewinder.png)
 ![image](../../../../../../assets/algopictures/sidewinder-colored.png)
@@ -51,7 +65,7 @@ for each row
            link cell and eastern neighbor of cell
 ```
 
-## Aldous-Broder
+### Aldous-Broder
 
 ![image](../../../../../../assets/algopictures/aldous-broder.png)
 ![image](../../../../../../assets/algopictures/aldous-broder-colored.png)
@@ -70,7 +84,7 @@ while remaining count > 0
     move to the neighbor
 ```
 
-## Wilson's
+### Wilson's
 
 ![image](../../../../../../assets/algopictures/wilsons.png)
 ![image](../../../../../../assets/algopictures/wilsons-colored.png)
@@ -96,7 +110,7 @@ while there are unvisited cells
         mark cell as visited
 ```
 
-## Hunt and kill
+### Hunt and kill
 
 ![image](../../../../../../assets/algopictures/hunt-and-kill.png)
 ![image](../../../../../../assets/algopictures/hunt-and-kill-colored.png)
@@ -121,7 +135,7 @@ while there are unvisited cells
         mark current as visited
 ```
 
-## Recursive backtracker
+### Recursive backtracker
 
 ![image](../../../../../../assets/algopictures/recursive-backtracker.png)
 ![image](../../../../../../assets/algopictures/recursive-backtracker-colored.png)
@@ -142,7 +156,7 @@ while stack is not empty
         stack.pop()
 ```
 
-## Recursive division
+### Recursive division
 
 ![image](../../../../../../assets/algopictures/recursive-division.png)
 ![image](../../../../../../assets/algopictures/recursive-division-colored.png)
@@ -189,7 +203,7 @@ function divideHorizontally(x, y, width, height)
 > `Room` på stacken.
 > Du er ferdig når stacken er tom
 
-## Prim's (forenklet)
+### Prim's (forenklet)
 
 ![image](../../../../../../assets/algopictures/prims.png)
 ![image](../../../../../../assets/algopictures/prims-colored.png)
@@ -211,7 +225,7 @@ while active is not empty
         remove current from active
 ```
 
-## Andre
+### Andre
 
 - Eller's
 - Kruskal's

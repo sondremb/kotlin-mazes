@@ -11,9 +11,10 @@
 
 ## Hva kan jeg gjøre?
 
-- Implementer flere labyrint-algoritmer. Sjekk ut README-fila i `mazegeneration`-pakken!
-- Implementer flere typer grids. Sjekk ut README-fila i `grids`-pakken!
-- Lag en ny scene! For eksmpel:
+- Implementer flere labyrint-algoritmer. Sjekk
+  ut [mazegeneration/README.md](desktop/src/com/mygdx/kotlinmazes/mazegeneration/README.md)
+- Implementer flere typer grids. Sjekk ut [grids/README.md](desktop/src/com/mygdx/kotlinmazes/grids/README.md)
+- Lag en ny scene! For eksempel:
     - Ta inspirasjon fra `scenes/SquareGridDistanceClick.kt` og lag en scene hvor du klikker på to celler for å tegne
       raskeste vei mellom de to
     - Lag en scene hvor du lager labyrinter ved å klikke på celler for å linke de til hverandre
@@ -32,17 +33,13 @@ Klikk to punkter, finn raskeste vei
 Klikk et punkt, finn fjerneste punkt
 Lengste distanse
 
-Lage presentasjon
 Lage noe med solving
 Lage noe stepped med solving
-Lage steppet med taster
 Sjekke at alle eksistere scener kjører
-Gjøre drawer til et interface
-Lage noe generisk med drawer
 
 Hva skal være igjen?
 SquareGrid
-PolarGrid
+HexGrid
 MaskedGrid?
 BinaryTree stepped
 En "generisk" algoritme - AldousBroder?

@@ -1,5 +1,20 @@
 # Scener
 
+## Forslag til ting å gjøre
+
+Scenen [SquareGridDistance.kt](SquareGridDistance.kt) har flotte farger, men savner en labyrint.
+
+Scenen [DrawHex.kt](DrawHex.kt) er litt trist - det er bare et Hex-grid, uten noe labyrint 😢. Følg stegene der inne for
+å gi scenen litt liv!
+
+Lag en scene hvor du kan klikke på to celler, så tegnes veien mellom de to.
+
+Lag en scene hvor du kan klikke på en celle, så tegnes veien til den fjerneste cellen.
+
+Lag en scene hvor du starter i en celle, og navigerer seg rundt med piltastene.
+
+Lag en scene hvor du starter i en celle, og navigerer seg rundt med musa - men kan ikke gå forbi vegger.
+
 ## Å lage en ny Scene
 
 `init()` kalles når scenen blir laget.
@@ -22,11 +37,11 @@ override fun draw() {
 
 ## Å kjøre en Scene
 
-Bare lag en `main()`-funksjon, og kall `playScene()` med scenen du vil kjøre som parameter:
+Bare lag en `main()`-funksjon, og kall `.play()` på scenen du vil kjøre.
 
 ```kotlin
-void main () {
-    playScene(MyCoolScene())
+fun main() {
+    MyCoolScene().play()
 }
 
 class MyCoolScene : Scene() {
@@ -44,11 +59,3 @@ class MyCoolScene : Scene() {
 }
 ```
 
-⚠️ OBS: Merk at på MacOS kan støte på følgende feilmelding:
-
-```
-GLFW may only be used on the main thread and that thread must be the first thread in the process. Please run the JVM with -XstartOnFirstThread. This check may be disabled with Configuration.GLFW_CHECK_THREAD0.
-```
-
-Løsningen er som det står i feilmeldingen: kjør JVMen med `-XstartOnFirstThread`-flagget. Dette kan gjøres i IntelliJ
-ved å klikke på "kjør"-knappen, og så "Edit Configurations...". Deretter kan du legge til flagget i "VM options"-feltet.

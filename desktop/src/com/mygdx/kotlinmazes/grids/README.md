@@ -6,6 +6,10 @@ Begynn med å implementere subklasser av de abstrakte klassene `Grid` og `Cell`.
 For å tegne gridet kan det være lurt med en "drawer"-klasse - ta inspirasjon fra `SquareGridDrawer` i `drawer`-pakken.  
 Alternativt kan du gjøre tegning rett i scenen din, sånn som i `scenes/DrawPolarGrid.kt`.
 
+> ⚠️ Dette er en stor oppgave, som kan inneholde en del knoting med geometri og matematikk
+> Jeg (Sondre) har per nå (2024-12-12) ikke implementert disse selv - jeg hjelper deg veldig gjerne, men jeg har ikke
+> fasiten!
+
 ## Noen forslag:
 
 ### "Upsilon"-grid
@@ -25,12 +29,5 @@ Stable likebente trekanter oppå hverandre, og du får et grid som ligner på de
 
 <img alt="trianglegrid.png" src="../../../../../../assets/trianglegrid.png" width="50%"/>
 
-### Hex-grid
-
-Hex-grid er kjempekule!
-
-<img alt="hexgrid.png" src="../../../../../../assets/hexgrid.png" width="50%"/>
-
-Dette er en litt større oppgave, og kan ta en stund å gjennomføre. Hvis du vil bryne deg på utfordringen vil jeg veldig
-sterkt anbefale [denne bloggposten](https://www.redblobgames.com/grids/hexagons/), som går gjennom koordinatsystemer,
-naboberegning og geometri (og mye mer!) for hexagoner.
+Denne siden har en fin beskrivelse av hvordan du kan lage et slikt grid:  
+https://www.boristhebrave.com/2021/05/23/triangle-grids/
