@@ -10,7 +10,7 @@ fun main() {
 }
 
 class BinaryTree : Scene() {
-    lateinit var grid: SquareGrid
+    private lateinit var grid: SquareGrid
     private lateinit var drawer: SquareGridDrawer
     override fun init() {
         super.init()
