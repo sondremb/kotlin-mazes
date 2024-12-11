@@ -215,8 +215,6 @@ while active is not empty
 
 ## Andre
 
-- Binary tree
-- Sidewinder
 - Eller's
 - Kruskal's
 - Growing tree
