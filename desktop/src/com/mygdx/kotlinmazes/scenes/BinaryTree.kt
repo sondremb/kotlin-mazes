@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
 import com.mygdx.kotlinmazes.grids.square.SquareGrid
+import com.mygdx.kotlinmazes.mazegeneration.binaryTree
 
 fun main() {
     BinaryTree().play()
@@ -15,6 +16,7 @@ class BinaryTree : Scene() {
     override fun init() {
         super.init()
         grid = SquareGrid(20, 20)
+        binaryTree(grid)
         drawer = SquareGridDrawer(shapeRenderer, grid)
     }
 
