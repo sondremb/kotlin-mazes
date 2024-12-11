@@ -55,4 +55,13 @@ class RecursiveDivision(private val grid: SquareGrid) : Iterator<Unit> {
     }
 
     private class Box(val x: Int, val y: Int, val width: Int, val height: Int)
+
+    companion object {
+        fun on(grid: SquareGrid) {
+            val iterator = RecursiveDivision(grid)
+            while (iterator.hasNext()) {
+                iterator.next()
+            }
+        }
+    }
 }

@@ -27,4 +27,13 @@ class AldousBroder(val grid: Grid) : Iterator<Unit> {
         }
 
     }
+
+    companion object {
+        fun on(grid: Grid) {
+            val iterator = AldousBroder(grid)
+            while (iterator.hasNext()) {
+                iterator.next()
+            }
+        }
+    }
 }

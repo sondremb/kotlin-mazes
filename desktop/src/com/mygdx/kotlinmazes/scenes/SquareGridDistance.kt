@@ -17,9 +17,7 @@ fun main() {
 class SquareGridDistance(private val grid: SquareGrid, private val distance: Distance) : Scene() {
 
     private val gradient = Gradient.Plasma.sampler(0f, distance.max.toFloat())
-
     private lateinit var drawer: SquareGridDrawer;
-
     override fun init() {
         drawer = SquareGridDrawer(shapeRenderer, grid)
     }
@@ -28,9 +26,7 @@ class SquareGridDistance(private val grid: SquareGrid, private val distance: Dis
         ScreenUtils.clear(1f, 1f, 1f, 1f)
         grid.cells().forEach {
             drawer.fill(it, gradient.sample(distance[it].toFloat()))
-            it.resetLinks()
         }
-        shapeRenderer.color = Color.BLACK
-        grid.cells().forEach(drawer::drawUnlinkedBorders)
+        drawer.drawUnlinkedBorders(Color.BLACK)
     }
 }

@@ -25,4 +25,13 @@ class RecursiveBacktracker(grid: Grid) : Iterator<Unit> {
             stack.removeLast()
         }
     }
+
+    companion object {
+        fun on(grid: Grid) {
+            val algo = RecursiveBacktracker(grid)
+            while (algo.hasNext()) {
+                algo.next()
+            }
+        }
+    }
 }

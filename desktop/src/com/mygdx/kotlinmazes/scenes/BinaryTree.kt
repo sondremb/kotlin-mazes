@@ -21,8 +21,6 @@ class BinaryTree : Scene() {
 
     override fun draw() {
         ScreenUtils.clear(Color.WHITE)
-        grid.cells().forEach {
-            drawer.drawUnlinkedBorders(it, Color.GRAY)
-        }
+        drawer.drawUnlinkedBorders(Color.GRAY)
     }
 }
