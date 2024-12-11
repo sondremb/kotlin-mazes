@@ -14,10 +14,51 @@ Det kan hende du må utvide `Grid`-klassen med noen metoder for å få det til �
 > lenke for å sjekke om den er visited.
 > Altså ved å sjekke `cell.links.isEmpty()` eller `cell.links.isNotEmpty()`
 
+## Binary Tree
+
+![image](../../../../../../assets/algopictures/binarytree.png)
+![image](../../../../../../assets/algopictures/binarytree-colored.png)
+
+Sterk diagonal tekstur, siden den alltid linker til nord eller øst.
+Alle de nordligste cellene er lenket til hverandre, og alle de østligste cellene er lenket til hverandre.
+
+```raw
+for each cell
+    candidates = [cell to the north if it exists, cell to the east if it exists]
+    neighbor = random candidate
+    link cell and neighbor
+```
+
+## Sidewinder
+
+![image](../../../../../../assets/algopictures/sidewinder.png)
+![image](../../../../../../assets/algopictures/sidewinder-colored.png)
+
+Øverste raden er alltid lenket sammen.
+
+```raw
+for each row
+    run = []
+    for each cell in the row
+        run.add(cell)
+        isAtEasternBoundary = true if eastern neighbor does not exist
+        isAtNorthernBoundary = true if northern neighbor does not exist
+        shouldCloseOut = isAtEasternBoundary or (not isAtNorthernBoundary and randomBoolean())
+        if shouldCloseOut
+            member = random cell from run
+            if member has northern neighbor
+                link member and northern neighbor of member
+            run = []
+        else
+           link cell and eastern neighbor of cell
+```
+
 ## Aldous-Broder
 
 ![image](../../../../../../assets/algopictures/aldous-broder.png)
 ![image](../../../../../../assets/algopictures/aldous-broder-colored.png)
+
+Ubiased, velger blant alle gyldige labyrinter med lik sannsynlighet.
 
 ```raw
 choose a random cell
@@ -35,6 +76,8 @@ while remaining count > 0
 
 ![image](../../../../../../assets/algopictures/wilsons.png)
 ![image](../../../../../../assets/algopictures/wilsons-colored.png)
+
+Ubiased, velger blant alle gyldige labyrinter med lik sannsynlighet.
 
 ```raw
 mark all cells as unvisited
@@ -60,6 +103,8 @@ while there are unvisited cells
 ![image](../../../../../../assets/algopictures/hunt-and-kill.png)
 ![image](../../../../../../assets/algopictures/hunt-and-kill-colored.png)
 
+Lange korridorer, færre korte blindveier.
+
 ```raw
 mark all cells as unvisited
 current = random cell
@@ -83,18 +128,17 @@ while there are unvisited cells
 ![image](../../../../../../assets/algopictures/recursive-backtracker.png)
 ![image](../../../../../../assets/algopictures/recursive-backtracker-colored.png)
 
+Lange korridorer, færre korte blindveier.
+
 ```raw
-mark all cells as unvisited
 first = random cell (or start at a specific cell)
-mark first as visited
 stack = [first]
 while stack is not empty
     current = stack.pop()
-    candidates = neighbors of current that are unvisited
+    candidates = neighbors of current that have no links
     if candidates is not empty
         next = random candidate
         link current and next
-        mark next as visited
         stack.push(next)
     else
         stack.pop()
@@ -104,6 +148,10 @@ while stack is not empty
 
 ![image](../../../../../../assets/algopictures/recursive-division.png)
 ![image](../../../../../../assets/algopictures/recursive-division-colored.png)
+
+Rektangulære rom med en enkelt åpning mellom hver "boks". Kan få lange rette korridorer, hvis et rom får dimensjoner 1 x
+N
+eller N x 1.
 
 ```raw
 link all cells to their neighbors
@@ -143,24 +191,23 @@ function divideHorizontally(x, y, width, height)
 > `Room` på stacken.
 > Du er ferdig når stacken er tom
 
-## Prim's
+## Prim's (forenklet)
 
 ![image](../../../../../../assets/algopictures/prims.png)
 ![image](../../../../../../assets/algopictures/prims-colored.png)
 
+Tekstur som "stråler" ut fra startpunktet.
+
 ```raw
-mark all cells as unvisited
 first = random cell (or start at a specific cell)
-mark fist as visited
 active = [first]
 
 while active is not empty
     current = random active cell
-    candidates = neighbors of current that are unvisited
+    candidates = neighbors of current that have no links
     if candidates is not empty
         neighbor = random candidate
         link current and neighbor
-        mark neighbor as visited
         add neighbor to active
     else
         remove current from active
