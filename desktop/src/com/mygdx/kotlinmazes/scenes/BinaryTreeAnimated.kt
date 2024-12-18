@@ -4,11 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
-import com.mygdx.kotlinmazes.Config
-import com.mygdx.kotlinmazes.drawers.SquareGridDrawer
-import com.mygdx.kotlinmazes.grids.square.SquareGrid
-import com.mygdx.kotlinmazes.mazegeneration.BinaryTree
-import com.mygdx.kotlinmazes.utils.math.inset
+import com.mygdx.kotlinmazes.drawers.TriangleDrawer
+import com.mygdx.kotlinmazes.grids.triangle.TriangleGrid
+import com.mygdx.kotlinmazes.mazegeneration.Prims
 
 fun main() {
     BinaryTreeAnimated().play()
@@ -20,13 +18,13 @@ class BinaryTreeAnimated : Scene() {
     // [→]     = next step
     private var isPlaying = false
     private var timeSinceLastUpdate = 0f
-    lateinit var grid: SquareGrid
-    private lateinit var drawer: SquareGridDrawer
-    private var algo: BinaryTree? = null
+    lateinit var grid: TriangleGrid
+    private lateinit var drawer: TriangleDrawer
+    private var algo: Prims? = null
     override fun init() {
         super.init()
-        grid = SquareGrid(20, 20)
-        drawer = SquareGridDrawer(shapeRenderer, grid, Config.VIEWPORT_RECT.inset(10f))
+        grid = TriangleGrid(30)
+        drawer = TriangleDrawer(shapeRenderer, grid)
     }
 
     override fun draw() {
@@ -38,7 +36,7 @@ class BinaryTreeAnimated : Scene() {
         }
         if (shouldUpdate()) {
             timeSinceLastUpdate = 0f
-            algo = algo ?: BinaryTree(grid!!)
+            algo = algo ?: Prims(grid!!)
             if (algo!!.hasNext()) {
                 algo!!.next()
             }
@@ -50,7 +48,7 @@ class BinaryTreeAnimated : Scene() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             isPlaying = !isPlaying
         }
-        if (isPlaying && timeSinceLastUpdate > 0.2f || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+        if (isPlaying || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             return true
         }
         return false
